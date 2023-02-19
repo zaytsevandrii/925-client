@@ -1,0 +1,68 @@
+.navbar {
+    background-color: black;
+    width: 100vw;
+    height: 70px;
+
+    @media (max-width: 991px) {
+      display: flex;
+      height: 55px;
+  }
+    .left {
+        color: #fff;
+        font-size: 12px;
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        flex-direction: row;
+
+       
+        @media (max-width: 991px) {
+            display: none;
+        }
+
+        .map {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                margin-right: 5px;
+            }
+        }
+        .phone {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 20px;
+            img {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .center {
+    
+        img {
+            cursor: pointer;
+
+            @media (max-width: 991px) {
+                width: 100px;
+                height: 50px;
+           
+            }
+        }
+    }
+
+    .right {
+        .img1,
+        .img2 {
+            @media (max-width: 991px) {
+                display: none;
+            }
+        }
+
+        img {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+    }
+}
