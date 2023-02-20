@@ -11,7 +11,7 @@ const Navbar = ({ children }) => {
     return (
         <>
             <div className={styles.navbar}>
-                <div className="container">
+                <div className="container py-1">
                     <div className="col-sm-12  ">
                         <div className="row">
                             <div className="col-4  d-flex align-items-center">
@@ -35,9 +35,9 @@ const Navbar = ({ children }) => {
                                     <Hamburger />
                                 </div>
                             </div>
-                            <div className="col-4  d-flex  justify-content-center">
+                            <div className="col-4  d-flex align-items-center  justify-content-center">
                                 <div className={styles.center}>
-                                    <Image src={logo} width={140} alt="logo" />
+                                    <Image src={logo} width={130} alt="logo" />
                                 </div>
                             </div>
                             <div className="col-4  d-flex align-items-center justify-content-end">
@@ -48,6 +48,17 @@ const Navbar = ({ children }) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className={styles.navbar2}>
+                    <div className="container  d-flex justify-content-around">
+                        <li>Коллекции</li>
+                        <li>серьги</li>
+                        <li>кольца</li>
+                        <li>ожерелья</li>
+                        <li>браслеты</li>
+                        <li>доставка и оплата</li>
+                        <li>о нас</li>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ a {
 /* ----------------------------------------Hamburger Menu ------------------------------*/
 .hamburger {
   position: relative;
-  top: 10px;
+  top: 9px;
   z-index: 10;
   cursor: pointer;
   width: 30px;
@@ -79,4 +79,9 @@ a {
 
 .open .hamburger-bottom {
   transform: rotate(-45deg) translateY(12px) translateX(-12px);
+}
+
+
+.first{
+  background-color: red;
 }
