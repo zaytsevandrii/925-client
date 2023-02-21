@@ -3,7 +3,7 @@
     top: 0;
     background-color: black;
     width: 100vw;
-    z-index: 2;
+    z-index: 7;
     @media (max-width: 991px) {
         display: flex;
         box-shadow: 0 5px 10px rgb(0 0 0 / 29%);
@@ -79,6 +79,12 @@
         font-family: "Roboto", sans-serif;
         font-weight: 500;
         cursor: pointer;
+        color: rgb(41, 39, 39);
+
+        &:hover{
+            color: black;
+            font-weight: 600;
+        }
     }
 
     @media (max-width: 991px) {

@@ -15,13 +15,13 @@ const CarouselComponent = () => {
                         {/* <Image src={img1} alt="First slide" className="d-block w-100 h-auto" /> */}
                         <Carousel interval={2900} indicators={false}>
                     <Carousel.Item>
-                        <Image src={img1} alt="First slide" className="d-block w-100 h-auto"/>
+                        <Image src={img1} priority alt="First slide" className="d-block w-100 h-auto"/>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <Image src={img2} alt="Second slide" className="d-block w-100 h-auto"/>
+                        <Image src={img2} priority alt="Second slide" className="d-block w-100 h-auto"/>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <Image src={img3} alt="Third slide" className="d-block w-100 h-auto"/>
+                        <Image src={img3} priority alt="Third slide" className="d-block w-100 h-auto"/>
                     </Carousel.Item>
                 </Carousel>
                     </div>
