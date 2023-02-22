@@ -12,7 +12,7 @@ const Navbar = ({ children }) => {
         setOpen((prev) => !prev)
     }
     const closeModal = () => {
-        setTimeout(()=>setOpen(false),70)
+        setTimeout(() => setOpen(false), 70)
     }
     const modalRef = useRef(null)
     useLayoutEffect(() => {
@@ -40,6 +40,13 @@ const Navbar = ({ children }) => {
         <>
             <div className={`${open && "overlay-show"}`}></div>
             <div id="mobile-menu" className={`mobile-main-menu ${open && "show-menu"}`}>
+                <div className="topMobile">
+                    {" "}
+                    <Image src="/loc.svg" alt="search" width={37} height={37} />
+                    <Image src="/phone.svg" alt="search" width={37} height={37} />{" "}
+                    <Image src="/search.svg" alt="search" width={37} height={37} className={styles.img1} />
+                    <Image src="/user.svg" alt="user" width={37} height={37} className={styles.img2} />
+                </div>
                 <ul>
                     <Link href="/goods/collections">
                         <li onClick={closeModal}>Коллекции</li>
