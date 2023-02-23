@@ -6,7 +6,7 @@ import Hamburger from "./Hamburger"
 import Link from "next/link"
 import Footer from "./Footer"
 
-const Navbar = ({ children }) => {
+const Navbar = () => {
     const [open, setOpen] = useState(false)
     const openModal = () => {
         setOpen((prev) => !prev)
@@ -115,7 +115,7 @@ const Navbar = ({ children }) => {
                             <div className="col-4  d-flex align-items-center  justify-content-center">
                                 <div className={styles.center}>
                                     <Link href="/">
-                                        <Image src={logo} width={130} alt="logo" />
+                                        <Image src={logo} priority width={130} alt="logo" />
                                     </Link>
                                 </div>
                             </div>
@@ -123,7 +123,9 @@ const Navbar = ({ children }) => {
                                 <div className={styles.right}>
                                     <Image src="/search.svg" alt="search" width={23} height={23} className={styles.img1} />
                                     <Image src="/user.svg" alt="user" width={28} height={28} className={styles.img2} />
-                                    <Image src="/cart.svg" alt="cart" width={23} height={23} />
+                                    <Link href="/basket" alt="корзина">
+                                        <Image src="/cart.svg" alt="cart" width={23} height={23} />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +160,6 @@ const Navbar = ({ children }) => {
                     </div>
                 </div>
             </div>
-            <div>{children}</div>
-            <Footer />
         </>
     )
 }

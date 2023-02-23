@@ -1,13 +1,12 @@
 import "../styles/globals.scss"
-import Navbar from "../components/Navbar"
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css"
+import Layout from "../components/Layout"
 function MyApp({ Component, pageProps }) {
     return (
         <>
-            <Navbar>
+            <Layout>
                 <Component {...pageProps} />
-            </Navbar>
+            </Layout>
         </>
     )
 }
