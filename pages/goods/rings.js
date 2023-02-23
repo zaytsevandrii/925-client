@@ -1,7 +1,5 @@
 import React from "react"
 import styles from "../../styles/Rings.module.scss"
-import img1 from "../../public/collections/ring1.jpg"
-import Image from "next/image"
 import Product from "../../components/goods/product"
 
 const rings = () => {
