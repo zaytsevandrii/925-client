@@ -1,12 +1,14 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from "react"
 import styles from "../styles/Navbar.module.scss"
 import logo from "../public/logo.png"
 import Image from "next/image"
 import Hamburger from "./Hamburger"
 import Link from "next/link"
-import Footer from "./Footer"
+import { Store } from "../styles/utils/Store"
 
 const Navbar = () => {
+    const { state, dispatch } = useContext(Store)
+    const { cart } = state
     const [open, setOpen] = useState(false)
     const openModal = () => {
         setOpen((prev) => !prev)
@@ -124,7 +126,13 @@ const Navbar = () => {
                                     <Image src="/search.svg" alt="search" width={23} height={23} className={styles.img1} />
                                     <Image src="/user.svg" alt="user" width={28} height={28} className={styles.img2} />
                                     <Link href="/basket" alt="корзина">
-                                        <Image src="/cart.svg" alt="cart" width={23} height={23} />
+                                        <div className={styles.cart}>
+                                            {cart.cartItems.length > 0 && (
+                                                <p>{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</p>
+                                            )}
+
+                                            <Image src="/cart.svg" alt="cart" width={23} height={23} className={styles.img3} />
+                                        </div>
                                     </Link>
                                 </div>
                             </div>

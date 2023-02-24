@@ -1,5 +1,6 @@
 .cart{
     min-height: 60vh;
+    
     @media (max-width: 912px) {
         min-height: 72vh;
     }
@@ -26,5 +27,11 @@
 
     .back{
         margin-top: 30px;
+    }
+
+    .image{
+        @media (max-width:767px){
+            width: 50%;
+        }
     }
 }

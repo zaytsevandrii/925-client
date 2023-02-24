@@ -51,6 +51,8 @@
     }
 
     .right {
+        display: flex;
+        align-items: center;
         .img1,
         .img2 {
             @media (max-width: 991px) {
@@ -58,6 +60,28 @@
             }
         }
 
+       .cart{
+        display: flex;
+        position: relative;
+
+        .img3{
+            display: block;
+        }
+
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left:  8px;
+            top: -10px;
+            background-color: blue;
+            border-radius: 50%;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+        }
+       }
         img {
             margin-left: 20px;
             cursor: pointer;
