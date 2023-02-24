@@ -4,7 +4,7 @@ import logo from "../public/logo.png"
 import Image from "next/image"
 import Hamburger from "./Hamburger"
 import Link from "next/link"
-import { Store } from "../styles/utils/Store"
+import { Store } from "../utils/Store"
 
 const Navbar = () => {
     const { state, dispatch } = useContext(Store)
@@ -16,8 +16,12 @@ const Navbar = () => {
     const closeModal = () => {
         setTimeout(() => setOpen(false), 70)
     }
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
     const modalRef = useRef(null)
-    useLayoutEffect(() => {
+    useEffect(() => {
         function handleResize() {
             if (modalRef.current.clientWidth >= 992) {
                 // задаем ширину, при которой модальное меню должно закрываться
@@ -117,7 +121,7 @@ const Navbar = () => {
                             <div className="col-4  d-flex align-items-center  justify-content-center">
                                 <div className={styles.center}>
                                     <Link href="/">
-                                        <Image src={logo} priority width={130} alt="logo" />
+                                        <Image src={logo} priority width={130} alt="logo" onClick={closeModal}/>
                                     </Link>
                                 </div>
                             </div>
@@ -127,8 +131,8 @@ const Navbar = () => {
                                     <Image src="/user.svg" alt="user" width={28} height={28} className={styles.img2} />
                                     <Link href="/basket" alt="корзина">
                                         <div className={styles.cart}>
-                                            {cart.cartItems.length > 0 && (
-                                                <p>{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</p>
+                                            {/* cart.cartItems.length */cartItemsCount > 0 && (
+                                                <p>{cartItemsCount}{/* {cart.cartItems.reduce((a, c) => a + c.quantity, 0)} */}</p>
                                             )}
 
                                             <Image src="/cart.svg" alt="cart" width={23} height={23} className={styles.img3} />

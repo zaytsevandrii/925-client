@@ -181,3 +181,10 @@ a {
 /* .card{
   padding: 10px;
 } */
+
+
+.btn{
+    &:active{
+        transform: translateY(6%);
+    }
+}

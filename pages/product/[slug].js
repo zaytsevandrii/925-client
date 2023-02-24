@@ -1,11 +1,12 @@
 import { useRouter } from "next/router"
 import React, { useContext } from "react"
-import data from "../../styles/utils/data"
+import data from "../../utils/data"
 import styles from "../../styles/ProductScreen.module.scss"
 import Image from "next/image"
-import { Store } from "../../styles/utils/Store"
+import { Store } from "../../utils/Store"
 
 const ProductScreen = () => {
+    const router = useRouter()
   const {state,dispatch} = useContext(Store)
     const { query } = useRouter()
     const { slug } = query
@@ -24,6 +25,7 @@ const ProductScreen = () => {
         return
       }
       dispatch({type:'CART_ADD_ITEM',payload:{...product,quantity}})
+     /*  router.push('/basket') */
     }
     return (
         <div className="container ">

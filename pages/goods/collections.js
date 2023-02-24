@@ -1,9 +1,9 @@
 import React from 'react'
 import ProductItem from '../../components/goods/ProductItem'
 import styles from "../../styles/Rings.module.scss"
-import data from '../../styles/utils/data'
+import data from '../../utils/data'
 
-const collections = () => {
+const Сollections = () => {
   return (
     <>
     <div className={styles.rings}>
@@ -15,7 +15,7 @@ const collections = () => {
                 <div className="col-lg-9 col-12  mt-2">
                     <div className="row">
                         {data.products.map(product =>(
-                          <ProductItem product={product}/>
+                          <ProductItem product={product} key={product.slug}/>
                         ))}
                     </div>
                 </div>
@@ -26,4 +26,4 @@ const collections = () => {
   )
 }
 
-export default collections
+export default Сollections

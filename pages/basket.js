@@ -2,17 +2,20 @@ import Image from "next/image"
 import React, { useContext } from "react"
 import img1 from "../public/collections/cart.svg"
 import styles from "../styles/Cart.module.scss"
-import { Store } from "../styles/utils/Store"
-import img2 from "../public/collections/ring1.jpg"
 import Link from "next/link"
 import CartItem from "../components/mainPage/Cart/CartItem"
+import { Store } from "../utils/Store"
+import { useRouter } from "next/router"
+import dynamic from "next/dynamic"
 
-const basket = () => {
+function CartScreen()  {
+    const router = useRouter()
     const { state, dispatch } = useContext(Store)
     const {
         cart: { cartItems },
     } = state
-    console.log(cartItems)
+
+    
     return (
         <>
             <div className={styles.cart}>
@@ -71,17 +74,14 @@ const basket = () => {
                                 <div className="card">
                                     <h5 className="card-header">Стоимость товаров без учета доставки</h5>
                                     <div className="card-body">
-                                        <h5 className="card-title">Сумма покупки: 5000 тенге</h5>
+                                        <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
                                         <p className="card-text">
                                             Нужна помощь с заказом? <br /> 8 800 500 500
                                         </p>
-                                        <a href="#" className="btn btn-dark">
+                                        <button onClick={()=>router.push('/checkout')} className="btn btn-dark">
                                             ОФОРМИТЬ ЗАКАЗ
-                                        </a>
+                                        </button>
                                     </div>
-                                </div>
-                                <div>
-                                    Нужна помощь с заказом? <br />8 800 333 67 37
                                 </div>
                             </div>
                         </div>
@@ -92,4 +92,4 @@ const basket = () => {
     )
 }
 
-export default basket
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
