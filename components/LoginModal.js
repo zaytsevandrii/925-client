@@ -30,6 +30,7 @@ const LoginModal = ({ show, handleClose,allClose }) => {
               email,
               password,
             });
+            toast.success('Вы успешно вошли')
             handleClose()
             if (result.error) {
               toast.error(result.error);

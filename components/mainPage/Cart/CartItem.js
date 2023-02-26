@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react"
 import Image from "next/image"
 import React, { useContext } from "react"
 import img2 from "../../../public/collections/ring1.jpg"
@@ -32,6 +33,8 @@ const CartItem = ({ item }) => {
             dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })
         }
     }
+
+    const { status, data: session } = useSession()
     return (
         <div className="row my-2">
             <div className="d-flex col-xl-2 col-md-3 justify-content-center ">
@@ -45,7 +48,14 @@ const CartItem = ({ item }) => {
                 </div>
 
                 <div className="row">
-                    <p className="my-0">Цена: {item.price}</p>
+                    {status === "loading" ? (
+                      <p className="my-0">Цена: {item.price}</p>
+                    ) : session?.user ? (
+                        <p className="my-0">Цена: {item.salePrice}</p>
+                    ) : (
+                        <p className="my-0">Цена: {item.price}</p>
+                    )}
+                    
                 </div>
                 <div className="row">
                     <div className="my-1 d-flex">

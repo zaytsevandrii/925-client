@@ -7,6 +7,7 @@ import CartItem from "../components/mainPage/Cart/CartItem"
 import { Store } from "../utils/Store"
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
+import { useSession } from "next-auth/react"
 
 function CartScreen()  {
     const router = useRouter()
@@ -14,7 +15,7 @@ function CartScreen()  {
     const {
         cart: { cartItems },
     } = state
-
+    const { status, data: session } = useSession()
     
     return (
         <>
@@ -74,11 +75,18 @@ function CartScreen()  {
                                 <div className="card">
                                     <h5 className="card-header">Стоимость товаров без учета доставки</h5>
                                     <div className="card-body">
-                                        <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
+                                        
+                                        {status === "loading" ? (
+                                           <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
+                                        ) : session?.user ? (
+                                            <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.salePrice,0)} тенге</h5>
+                                        ) : (
+                                            <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
+                                        )}
                                         <p className="card-text">
                                             Нужна помощь с заказом? <br /> 8 800 500 500
                                         </p>
-                                        <button onClick={()=>router.push('/checkout')} className="btn btn-dark">
+                                        <button onClick={()=>router.push('/user-order-info')} className="btn btn-dark">
                                             ОФОРМИТЬ ЗАКАЗ
                                         </button>
                                     </div>

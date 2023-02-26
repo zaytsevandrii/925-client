@@ -4,29 +4,31 @@ import data from "../../utils/data"
 import styles from "../../styles/ProductScreen.module.scss"
 import Image from "next/image"
 import { Store } from "../../utils/Store"
+import { useSession } from "next-auth/react"
 
 const ProductScreen = () => {
     const router = useRouter()
-  const {state,dispatch} = useContext(Store)
+    const { state, dispatch } = useContext(Store)
     const { query } = useRouter()
     const { slug } = query
     const product = data.products.find((product) => product.slug === slug)
 
-    
     if (!product) {
         return <div>product Not Found</div>
     }
 
-    const addToCartHandler=()=>{
-      const existItem = state.cart.cartItems.find(item=>item.slug===product.slug)
-      const quantity = existItem?existItem.quantity+1:1
-      if(product.countInStock<quantity){
-        alert('Извините. Товара нет в наличии')
-        return
-      }
-      dispatch({type:'CART_ADD_ITEM',payload:{...product,quantity}})
-     /*  router.push('/basket') */
+    const addToCartHandler = () => {
+        const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
+        const quantity = existItem ? existItem.quantity + 1 : 1
+        if (product.countInStock < quantity) {
+            alert("Извините. Товара нет в наличии")
+            return
+        }
+        dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })
+        /*  router.push('/basket') */
     }
+
+    const { status, data: session } = useSession()
     return (
         <div className="container ">
             <div className={styles.product}>
@@ -39,7 +41,13 @@ const ProductScreen = () => {
                             <h2>{product.name}</h2>
                         </div>
                         <div className="row">
-                            <p>Цена: {product.price} тенге</p>
+                            {status === "loading" ? (
+                                <p>Цена: {product.price} тенге</p>
+                            ) : session?.user ? (
+                                <p>Цена: {product.salePrice} тенге</p>
+                            ) : (
+                                <p>Цена: {product.price} тенге</p>
+                            )}
                         </div>
                         <div className="row">
                             <p>Категория: {product.category}</p>

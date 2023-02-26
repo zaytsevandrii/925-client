@@ -43,7 +43,7 @@ const RegisterForm = () => {
       <div className={styles.register}>
       <h2 className="text-center mt-4">Регистрация</h2>
       <Row className="justify-content-center mt-2">
-          <Col md={6} sm={12}>
+          <Col md={8} sm={12}>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="username">
                 <Form.Label>Логин</Form.Label>
