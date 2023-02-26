@@ -7,9 +7,11 @@ body {
 }
 
 a {
-    color: inherit;
+    color: inherit !important;
     text-decoration: none !important;
 }
+
+
 
 * {
     box-sizing: border-box;
@@ -118,7 +120,11 @@ a {
         top: 70px;
         width: 100%;
         display: flex;
-
+        .drop {
+            flex: 1;
+            padding: 7px;
+            border: 1px solid #ebebeb1f;
+        }
         img {
             flex: 1;
             padding: 7px;
@@ -137,6 +143,10 @@ a {
         width: 400px;
     }
 
+    @media (max-width: 375px) {
+        justify-content: end;
+    }
+
     ul {
         display: flex;
         flex-direction: column;
@@ -144,6 +154,11 @@ a {
         list-style: none;
         padding: 50px;
         width: 100%;
+        margin-top: 25px;
+        @media (max-width: 415px) {
+            margin-top: 30px;
+
+        }
 
         a {
             color: #fff;
@@ -188,3 +203,5 @@ a {
         transform: translateY(6%);
     }
 }
+
+

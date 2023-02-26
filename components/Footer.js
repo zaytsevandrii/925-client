@@ -22,7 +22,7 @@ const Footer = () => {
                                     info@925.com
                                 </a>
                             </div>
-                            <a href="https://wa.me/+444444444" target="_blank">
+                            <a href="https://wa.me/+444444444" target="_blank" rel="noreferrer">
                                 <Image src={img} alt="whatsapp" width={25} height={25} style={{ marginRight: "10px" }} />
                                 <span className="social-item-text" style={{ color: "#73BE73" }}>
                                     WhatsApp
@@ -57,7 +57,7 @@ const Footer = () => {
                 <div className="footer-copyright text-center py-3">
                     <div>
                         Все права защищены © 2023
-                        <span style={{ fontSize: "18px" }}> "925Kazakhstan"</span>
+                        <span style={{ fontSize: "18px" }}> 925Kazakhstan</span>
                     </div>
                 </div>
             </footer>

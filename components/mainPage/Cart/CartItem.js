@@ -50,20 +50,24 @@ const CartItem = ({ item }) => {
                 <div className="row">
                     <div className="my-1 d-flex">
                         Количество:{" "}
-                        <button className="btn btn-dark py-0 px-1 mx-1" onClick={() => addToCartHandler(item, true)}>
-                            +
-                        </button>
+                        <div className={styles.btns}>
+                            <button className="btn btn-dark py-0 px-1 mx-2" onClick={() => addToCartHandler(item, true)}>
+                                +
+                            </button>
+                        </div>
                         {item.quantity}
-                        <button className="btn btn-dark py-0 px-2 mx-1" onClick={() => addToCartHandler(item, false)}>
-                            -
-                        </button>
+                        <div className={styles.btns}>
+                            <button className="btn btn-dark py-0 px-1 mx-2" onClick={() => addToCartHandler(item, false)}>
+                                –
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div className="row">
-                        <div className="my-1 w-auto" onClick={() => removeItemHandler(item)}>
-                            <Image src="/trash.svg" alt="корзина" width={24} height={24} style={{ cursor: "pointer" }} />
-                            <span style={{ cursor: "pointer" }}> Удалить</span>
-                        </div>
+                    <div className="my-1 w-auto" onClick={() => removeItemHandler(item)}>
+                        <Image src="/trash.svg" alt="корзина" width={24} height={24} style={{ cursor: "pointer" }} />
+                        <span style={{ cursor: "pointer" }}> Удалить</span>
+                    </div>
                 </div>
             </div>
         </div>
