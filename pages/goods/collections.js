@@ -1,9 +1,10 @@
 import React from 'react'
 import ProductItem from '../../components/goods/ProductItem'
+import Product from '../../models/Product'
 import styles from "../../styles/Rings.module.scss"
-import data from '../../utils/data'
+import db from '../../utils/db'
 
-const Сollections = () => {
+const Сollections = ({products}) => {
   return (
     <>
     <div className={styles.rings}>
@@ -14,7 +15,7 @@ const Сollections = () => {
                 </div>
                 <div className="col-lg-9 col-12  mt-2">
                     <div className="row">
-                        {data.products.map(product =>(
+                        {products.map(product =>(
                           <ProductItem product={product} key={product.slug}/>
                         ))}
                     </div>
@@ -27,3 +28,14 @@ const Сollections = () => {
 }
 
 export default Сollections
+
+
+export async function getServerSideProps() {
+  await db.connect();
+  const products = await Product.find().lean();
+  return {
+    props: {
+      products: products.map(db.convertDocToObj),
+    },
+  };
+}

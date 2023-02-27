@@ -1,17 +1,16 @@
 import { useRouter } from "next/router"
 import React, { useContext } from "react"
-import data from "../../utils/data"
 import styles from "../../styles/ProductScreen.module.scss"
 import Image from "next/image"
 import { Store } from "../../utils/Store"
 import { useSession } from "next-auth/react"
+import Product from "../../models/Product"
+import db from "../../utils/db"
 
-const ProductScreen = () => {
+const ProductScreen = (props) => {
+    const {product} = props
     const router = useRouter()
     const { state, dispatch } = useContext(Store)
-    const { query } = useRouter()
-    const { slug } = query
-    const product = data.products.find((product) => product.slug === slug)
 
     if (!product) {
         return <div>product Not Found</div>
@@ -79,3 +78,18 @@ const ProductScreen = () => {
 }
 
 export default ProductScreen
+
+
+export async function getServerSideProps(context) {
+    const { params } = context;
+    const { slug } = params;
+  
+    await db.connect();
+    const product = await Product.findOne({ slug }).lean();
+    await db.disconnect();
+    return {
+      props: {
+        product: product ? db.convertDocToObj(product) : null,
+      },
+    };
+  }
