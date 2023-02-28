@@ -40,7 +40,7 @@ const userOrderScreen = () => {
             })
         )
 
-        router.push("/payment")
+        router.push("/placeorder")
     }
 
     return (

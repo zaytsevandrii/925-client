@@ -1,9 +1,11 @@
+import axios from "axios"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import React, { useContext } from "react"
 import img2 from "../../../public/collections/ring1.jpg"
 import styles from "../../../styles/Cart.module.scss"
 import { Store } from "../../../utils/Store"
+import { toast } from 'react-toastify';
 
 const CartItem = ({ item }) => {
     const { state, dispatch } = useContext(Store)
@@ -14,10 +16,10 @@ const CartItem = ({ item }) => {
         cart: { cartItems },
     } = state
     console.log(cartItems)
-    const addToCartHandler = (product, isAdd) => {
+    const addToCartHandler = async (product, isAdd) => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
         let quantity = existItem ? existItem.quantity : 0
-
+        const { data } = await axios.get(`/api/products/${product._id}`);
         if (isAdd) {
             quantity += 1
         } else {
@@ -26,9 +28,8 @@ const CartItem = ({ item }) => {
 
         if (quantity < 1) {
             dispatch({ type: "CART_REMOVE_ITEM", payload: product })
-        } else if (product.countInStock < quantity) {
-            alert("Извините. Товара больше нет в наличии")
-            return
+        } else if (data.countInStock < quantity) {
+            return toast.error("Извините. Товара больше нет в наличии")
         } else {
             dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })
         }

@@ -28,6 +28,7 @@ const Navbar = () => {
     }
     const { state, dispatch } = useContext(Store)
     const { cart } = state
+    
     const [open, setOpen] = useState(false)
     const openModal = () => {
         setOpen((prev) => !prev)

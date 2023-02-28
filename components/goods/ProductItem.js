@@ -26,11 +26,9 @@ const ProductItem = ({ product }) => {
                     ) : (
                         <p className="card-text">{product.price} тенге</p>
                     )}
-                    {/*  <button type="button" className="btn btn-dark w-100" >
-                            Добавить 
-                        </button> */}<button type="button" className="btn btn-dark px-2">
+                  {/*  <button type="button" className="btn btn-dark px-2">
                             Добавить
-                        </button></div>
+                        </button> */}</div>
                 </div>
             </div>
         </li>

@@ -6,22 +6,24 @@ import { Store } from "../../utils/Store"
 import { useSession } from "next-auth/react"
 import Product from "../../models/Product"
 import db from "../../utils/db"
+import axios from "axios"
+import { toast } from "react-toastify"
 
 const ProductScreen = (props) => {
-    const {product} = props
+    const { product } = props
     const router = useRouter()
     const { state, dispatch } = useContext(Store)
-
     if (!product) {
         return <div>product Not Found</div>
     }
 
-    const addToCartHandler = () => {
+    const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
-        if (product.countInStock < quantity) {
-            alert("Извините. Товара нет в наличии")
-            return
+        const { data } = await axios.get(`/api/products/${product._id}`)
+
+        if (data.countInStock < quantity) {
+            return toast.error("Извините. Товара нет в наличии")
         }
         dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })
         /*  router.push('/basket') */
@@ -79,17 +81,16 @@ const ProductScreen = (props) => {
 
 export default ProductScreen
 
-
 export async function getServerSideProps(context) {
-    const { params } = context;
-    const { slug } = params;
-  
-    await db.connect();
-    const product = await Product.findOne({ slug }).lean();
-    await db.disconnect();
+    const { params } = context
+    const { slug } = params
+
+    await db.connect()
+    const product = await Product.findOne({ slug }).lean()
+    await db.disconnect()
     return {
-      props: {
-        product: product ? db.convertDocToObj(product) : null,
-      },
-    };
-  }
+        props: {
+            product: product ? db.convertDocToObj(product) : null,
+        },
+    }
+}
