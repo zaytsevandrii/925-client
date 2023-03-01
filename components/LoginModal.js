@@ -15,10 +15,10 @@ const LoginModal = ({ show, handleClose,allClose }) => {
     const { redirect } = router.query;
   
     useEffect(() => {
-     /*  if (session?.user) {
-        router.push(redirect || '/');
-      } */
-    }, [router, session, redirect]);
+       /*  if (session?.user) {
+          router.push(redirect || '/');
+        } */
+      }, [router, session, redirect]);
 
     
     const handleSubmit = async (event) => {
@@ -100,7 +100,7 @@ const LoginModal = ({ show, handleClose,allClose }) => {
                 </Form>
                 <div className="mt-3">
                     <p>
-                        У вас еще нет аккаунта? <Link href="/register" onClick={allClose}>Зарегистрируйтесь здесь.</Link>.
+                        У вас еще нет аккаунта?  <Link href={`/register?redirect=${redirect || '/'}`} onClick={allClose}>Зарегистрируйтесь здесь.</Link>.
                     </p>
                 </div>
             </Modal.Body>

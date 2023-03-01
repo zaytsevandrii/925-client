@@ -1,8 +1,22 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import styles from '../styles/Register.module.scss'
+import { getError } from '../utils/error';
 
 const RegisterForm = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const { redirect } = router.query;
+  useEffect(() => {
+    if (session?.user) {
+      router.push(redirect || '/');
+    }
+  }, [router, session, redirect]);
+
     const [formData, setFormData] = useState({
       username: '',
       email: '',
@@ -18,24 +32,39 @@ const RegisterForm = () => {
       });
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
       e.preventDefault();
       setErrors({});
-  
       // Проверка пароля
       if (formData.password !== formData.confirmPassword) {
         setErrors({ confirmPassword: 'Пароли не совпадают' });
         return;
       }
-  
       // Проверка на минимальную длину пароля
       if (formData.password.length < 8) {
         setErrors({ password: 'Пароль должен быть не менее 8 символов' });
         return;
       }
+      // Логика отправки формы на сервер
+      try {
+        await axios.post('/api/auth/signup', {
+          name:formData.username,
+          email:formData.email,
+          password:formData.password,
+        });
   
-      // Добавьте здесь логику отправки формы на сервер
-      console.log('Submitted', formData);
+        const result = await signIn('credentials', {
+          redirect: false,
+          email:formData.email,
+          password:formData.password,
+        });
+        toast.success('Пользователь успешно создан')
+        if (result.error) {
+          toast.error(result.error);
+        }
+      } catch (err) {
+        toast.error(getError(err));
+      }
     };
   
     return (
