@@ -74,7 +74,6 @@ const Navbar = () => {
             <div className={`${open && "overlay-show"}`}></div>
             <div id="mobile-menu" className={`mobile-main-menu ${open && "show-menu"}`}>
                 <div className="topMobile">
-                    {" "}
                     <Image src="/loc.svg" alt="карта" width={37} height={37} />
                     <Image src="/phone.svg" alt="телефон" width={37} height={37} />{" "}
                     <Image src="/search.svg" alt="поиск" width={37} height={37} className={styles.img1} />
@@ -92,7 +91,7 @@ const Navbar = () => {
                     <Link href="/goods/collections">
                         <li onClick={closeModal}>Коллекции</li>
                     </Link>
-
+                        
                     <Link href="/goods/earings">
                         <li onClick={closeModal}>Серьги </li>
                     </Link>
@@ -144,6 +143,7 @@ const Navbar = () => {
                                             горячая линия
                                         </div>
                                     </div>
+                                    
                                 </div>
                                 <div className={styles.leftH}>
                                     <Hamburger open={open} openModal={openModal} />

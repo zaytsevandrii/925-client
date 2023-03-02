@@ -100,7 +100,7 @@ const LoginModal = ({ show, handleClose,allClose }) => {
                 </Form>
                 <div className="mt-3">
                     <p>
-                        У вас еще нет аккаунта?  <Link href={`/register?redirect=${redirect || '/'}`} onClick={allClose}>Зарегистрируйтесь здесь.</Link>.
+                        У вас еще нет аккаунта?  <Link href={`/register?redirect=${redirect || '/'}`} onClick={allClose}><span style={{color:'blue'}}>Зарегистрируйтесь здесь.</span></Link>.
                     </p>
                 </div>
             </Modal.Body>
