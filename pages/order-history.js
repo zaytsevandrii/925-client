@@ -3,6 +3,7 @@ import { getError } from "../utils/error"
 import { Container, Table } from "react-bootstrap"
 import Link from "next/link"
 import styles from "../styles/Cart.module.scss"
+import axios from "axios"
 
 function reducer(state, action) {
     switch (action.type) {
@@ -17,7 +18,7 @@ function reducer(state, action) {
     }
 }
 
-export default function OrderHistoryScreen() {
+function OrderHistoryScreen() {
     const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
         loading: true,
         orders: [],
@@ -38,52 +39,51 @@ export default function OrderHistoryScreen() {
     }, [])
     return (
         <>
-        <div className={styles.orderHistory}>
-            <div className="container mt-4">
-                <div className="row">
-                    <div className="col-12 d-flex align-items-center  justify-content-center">
-                        <h1>Разместить заказ</h1>
+            <div className={styles.orderHistory}>
+                <div className="container mt-4">
+                    <div className="row">
+                        <div className="col-12 d-flex align-items-center  justify-content-center">
+                            <h1>История заказов</h1>
+                        </div>
                     </div>
-                </div>
 
-                <div className="row">
-                    <div className="col-12 mt-2">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID Заказа</th>
-                                    <th scope="col">Дата</th>
-                                    <th scope="col">Сумма</th>
-                                    <th scope="col">Действие</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <Link href="/">детали</Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div className="row">
+                        <div className="col-12 mt-2">
+                            {loading ? (
+                                <div>Загрузка...</div>
+                            ) : error ? (
+                                <div>{error}</div>
+                            ) : (
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID Заказа</th>
+                                            <th scope="col">Дата</th>
+                                            <th scope="col">Сумма</th>
+                                            <th scope="col">Действие</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {orders.map((order) => (
+                                            <tr key={order._id}>
+                                                <th scope="row">{order._id.substring(20, 24)}</th>
+                                                <td>{order.createdAt.substring(0, 10)}</td>
+                                                <td>{order.itemsPrice}</td>
+                                                <td>
+                                                    <Link  href={`/order/${order._id}`}>детали</Link>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </>
     )
 }
+
+OrderHistoryScreen.auth = true;
+export default OrderHistoryScreen;

@@ -24,8 +24,7 @@
         width: 28px;
         height: 28px;
 
-        .drop{
-        }
+       
 
         @media (max-width: 991px) {
         }
@@ -139,3 +138,12 @@
         display: none;
     }
 }
+
+.dropdown-menu {
+    background-color: red;
+    color: blue;
+    position: absolute;
+    right: 0;
+    left: auto;
+    transform: translateX(-100%);
+  }

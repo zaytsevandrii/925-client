@@ -59,7 +59,7 @@ function OrderScreen() {
                     </div>
                 ) : error ? (
                     <div className="container col-12 d-flex align-items-center  justify-content-center">
-                        <h2 >{error}</h2>
+                        <h2 >Заказ обрабатывается...</h2>
                     </div>
                 ) : (
                     <div className="container">

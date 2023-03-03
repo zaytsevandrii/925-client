@@ -2,42 +2,45 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import { toast } from "react-toastify"
-import { getError } from '../utils/error'
-import { signIn, useSession } from 'next-auth/react';
+import { getError } from "../utils/error"
+import { signIn, useSession } from "next-auth/react"
 import { useRouter } from "next/router"
 
-const LoginModal = ({ show, handleClose,allClose }) => {
-    const { data: session } = useSession();
+const LoginModal = ({ show, handleClose, allClose }) => {
+    const { data: session } = useSession()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
-    const router = useRouter();
-    const { redirect } = router.query;
-  
+    const router = useRouter()
+    const { redirect } = router.query
+
     useEffect(() => {
-       /*  if (session?.user) {
+        /*  if (session?.user) {
           router.push(redirect || '/');
         } */
-      }, [router, session, redirect]);
+    }, [router, session, redirect])
 
-    
     const handleSubmit = async (event) => {
         event.preventDefault()
         /* console.log(`Submitted: Name: ${name}, Email: ${email}, Password: ${password}`) */
         try {
-            const result = await signIn('credentials', {
-              redirect: false,
-              email,
-              password,
-            });
-            toast.success('Вы успешно вошли')
+            const result = await signIn("credentials", {
+                redirect: false,
+                email,
+                password,
+            })
+
             handleClose()
             if (result.error) {
-              toast.error(result.error);
+                toast.error(result.error)
+            }else{
+                toast.success("Вы успешно вошли")
             }
-          } catch (err) {
-            toast.error(getError(err));
-          }
+            
+        } catch (err) {
+            toast.error(getError(err))
+        }
+
         /* handleClose() */
     }
 
@@ -100,7 +103,11 @@ const LoginModal = ({ show, handleClose,allClose }) => {
                 </Form>
                 <div className="mt-3">
                     <p>
-                        У вас еще нет аккаунта?  <Link href={`/register?redirect=${redirect || '/'}`} onClick={allClose}><span style={{color:'blue'}}>Зарегистрируйтесь здесь.</span></Link>.
+                        У вас еще нет аккаунта?{" "}
+                        <Link href={`/register?redirect=${redirect || "/"}`} onClick={allClose}>
+                            <span style={{ color: "blue" }}>Зарегистрируйтесь здесь.</span>
+                        </Link>
+                        .
                     </p>
                 </div>
             </Modal.Body>

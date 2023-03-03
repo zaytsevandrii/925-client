@@ -171,7 +171,7 @@ const Navbar = () => {
                                             />
                                         ) : session?.user ? (
                                             <div className={styles.userName}>
-                                                <DropDownLink className={styles.drop} userName={session.user.name} logoutClickHandler={logoutClickHandler}/>
+                                                <DropDownLink className={styles.dropdown} userName={session.user.name} logoutClickHandler={logoutClickHandler} session={session}/>
                                                 {/* {session.user.name.charAt(0).toUpperCase()} */}
                                             </div>
                                         ) : (

@@ -50,7 +50,7 @@ const RegisterForm = () => {
         await axios.post('/api/auth/signup', {
           name:formData.username,
           email:formData.email,
-          password:formData.password,
+          password:formData.password, 
         });
   
         const result = await signIn('credentials', {
