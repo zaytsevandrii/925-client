@@ -5,7 +5,7 @@ import db from '../../../../utils/db';
 const handler = async (req, res) => {
   const session = await getSession({ req });
   if (!session || !session.user.isAdmin) {
-    return res.status(401).send('admin авторищация обязательна!');
+    return res.status(401).send('admin авторизация обязательна!');
   }
   // const { user } = session;
   if (req.method === 'GET') {

@@ -6,7 +6,15 @@ import { Col } from 'react-bootstrap'
 export default function DashboardNavbar() {
   const router = useRouter()
 
-  const isActive = (pathname) => router.pathname === pathname
+  const isActive = (pathname) => {
+    if (router.pathname === pathname) {
+      return true
+    } else if (router.pathname.startsWith('/admin/product')) {
+      return pathname.startsWith('/admin/products')
+    } else {
+      return false
+    }
+  }
   return (
     <Col md={3} className="mt-4">
                         <ul className="list-group">
