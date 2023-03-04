@@ -49,7 +49,6 @@ function OrderScreen() {
         itemsPrice,
       
       } = order;
-    console.log(order)
     return (
         <>
             <div className={styles.placeOrder}>
@@ -70,7 +69,7 @@ function OrderScreen() {
                         </div>
                         <div className="row">
                             <div className="col-12 d-flex align-items-center  justify-content-center">
-                                <h3>ID вашего заказа № {orderId}</h3>
+                                <h3>ID вашего заказа № {orderId.substring(20, 24)}</h3>
                             </div>
                         </div>
 

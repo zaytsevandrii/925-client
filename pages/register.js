@@ -75,13 +75,13 @@ const RegisterForm = () => {
           <Col md={8} sm={12}>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="username">
-                <Form.Label>Логин</Form.Label>
+                <Form.Label>Полное Имя</Form.Label>
                 <Form.Control
                   type="text"
                   name="username"
                   value={formData.username}
                   onChange={handleInputChange}
-                  placeholder="Введите логин"
+                  placeholder="Введите полное имя"
                   required
                 />
               </Form.Group>
