@@ -89,7 +89,7 @@ const Navbar = () => {
                 </div>
                 <ul>
                     <Link href="/goods/collections">
-                        <li onClick={closeModal}>Коллекции</li>
+                        <li onClick={closeModal}>Серебро</li>
                     </Link>
                         
                     <Link href="/goods/earings">
@@ -207,7 +207,7 @@ const Navbar = () => {
                 <div className={styles.navbar2}>
                     <div className="container  d-flex justify-content-around">
                         <Link href="/goods/collections">
-                            <li>Коллекции</li>
+                            <li>Серебро</li>
                         </Link>
                         <Link href="/goods/earings">
                             <li>серьги</li>

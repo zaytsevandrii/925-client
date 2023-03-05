@@ -79,7 +79,7 @@ function CartScreen()  {
                                         {status === "loading" ? (
                                            <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
                                         ) : session?.user ? (
-                                            <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.salePrice,0)} тенге</h5>
+                                            <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
                                         ) : (
                                             <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price,0)} тенге</h5>
                                         )}

@@ -20,9 +20,9 @@ const ProductItem = ({ product }) => {
                         
                     <div className={styles.cardBottom}>
                     {status === "loading" ? (
-                        <p className="card-text">{product.salePrice} тенге</p>
+                        <p className="card-text">{product.price} тенге</p>
                     ) : session?.user ? (
-                        <p className="card-text">{product.salePrice} тенге</p>
+                        <p className="card-text">{product.price} тенге</p>
                     ) : (
                         <p className="card-text">{product.price} тенге</p>
                     )}

@@ -52,7 +52,7 @@ const CartItem = ({ item }) => {
                     {status === "loading" ? (
                       <p className="my-0">Цена: {item.price}</p>
                     ) : session?.user ? (
-                        <p className="my-0">Цена: {item.salePrice}</p>
+                        <p className="my-0">Цена: {item.price}</p>
                     ) : (
                         <p className="my-0">Цена: {item.price}</p>
                     )}
