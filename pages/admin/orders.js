@@ -2,7 +2,7 @@ import axios from "axios"
 import Link from "next/link"
 import React, { useEffect, useReducer } from "react"
 import { getError } from "../../utils/error"
-import { Container, Row, Col, Card } from "react-bootstrap"
+import { Container, Row, Col, Table, Button  } from "react-bootstrap"
 import { useRouter } from "next/router"
 import DashboardNavbar from "../../components/DashboardNavbar"
 import styles from "../../styles/Cart.module.scss"
@@ -72,7 +72,7 @@ export default function AdminOrderScreen() {
                                             <tr key={order._id}>
                                                 <td>{order._id.substring(20, 24)}</td>
                                                 <td>{order.user ? order.user.name : "DELETED USER"}</td>
-                                                <td>{order.createdAt.substring(0, 10)}</td>
+                                                <td>{order.createdAt.substring(0, 10)}, {order.createdAt.substring(11, 16)}</td>
                                                 <td>{order.itemsPrice}</td>
 
                                                 <td>

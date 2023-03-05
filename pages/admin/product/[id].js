@@ -148,7 +148,7 @@ export default function AdminProductEditScreen() {
                                         {errors.name && <div className="text-danger">{errors.name.message}</div>}
                                     </Form.Group>
                                     <Form.Group className="mb-4" controlId="slug">
-                                        <Form.Label>Slug !</Form.Label>
+                                        <Form.Label>Slug ! Шифр(буквы и цифры без пробелов)</Form.Label>
                                         <Form.Control
                                             type="text"
                                             {...register("slug", {
@@ -181,16 +181,35 @@ export default function AdminProductEditScreen() {
                                         <Form.Label htmlFor="imageFile">Загрузка изображения</Form.Label>
                                         <Form.Control type="file" id="imageFile" onChange={uploadHandler} />
 
-                                        {loadingUpload && <div>Uploading....</div>}
+                                        {loadingUpload && <div>Загрузка....</div>}
                                     </Form.Group>
-                                    <Form.Group className="mb-4" controlId="category">
-                                        <Form.Label>Category</Form.Label>
+                                    {/* <Form.Group className="mb-4" controlId="category">
+                                        <Form.Label>Категория</Form.Label>
                                         <Form.Control
                                             type="text"
                                             {...register("category", {
                                                 required: "Please enter category",
                                             })}
                                         />
+                                        {errors.category && <div className="text-danger">{errors.category.message}</div>}
+                                    </Form.Group> */}
+                                    <Form.Group className="mb-4" controlId="category">
+                                        <Form.Label>Категория</Form.Label>
+                                        <Form.Select
+                                            {...register("category", {
+                                                required: "Выберите категорию",
+                                            })}
+                                        >
+                                            <option value="Серебро">Серебро</option>
+                                            <option value="Бижутерия">Бижутерия</option>
+                                            <option value="Часы">Часы</option>
+                                            <option value="Сумки">Сумки</option>
+                                            <option value="Детские">Детские</option>
+                                            <option value="Шарфы">Шарфы</option>
+                                            <option value="Парфюмерия">Парфюмерия</option>
+                                            <option value="Камни">Камни</option>
+                                            <option value="Новинки">Новинки</option>
+                                        </Form.Select>
                                         {errors.category && <div className="text-danger">{errors.category.message}</div>}
                                     </Form.Group>
                                     <Form.Group className="mb-4" controlId="countInStock">
@@ -214,7 +233,7 @@ export default function AdminProductEditScreen() {
                                         {errors.description && <div className="text-danger">{errors.description.message}</div>}
                                     </Form.Group>
                                     <Button variant="primary" disabled={loadingUpdate} type="submit">
-                                        {loadingUpdate ? "Loading" : "Update"}
+                                        {loadingUpdate ? "Загрузка" : "Обновить"}
                                     </Button>
                                     <div className="mb-4">
                                         <Link href={`/admin/products`}>назад</Link>

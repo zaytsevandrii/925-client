@@ -115,11 +115,11 @@ function AdminDashboardScreen() {
                                                 <Card.Title as="h2" className="text-3xl">
                                                     {summary.productsCount}
                                                 </Card.Title>
-                                                <Card.Text>Товаров Серебра</Card.Text>
+                                                <Card.Text>Всего товаров</Card.Text>
                                                 <Link href="/admin/products">Посмотреть раздел</Link>
                                             </Card>
                                         </Col>
-                                        <Col md={3}>
+                                       {/*  <Col md={3}>
                                             <Card className="m-2 p-1">
                                                 <Card.Title as="h2" className="text-3xl">
                                                     {summary.productsCount}
@@ -136,7 +136,7 @@ function AdminDashboardScreen() {
                                                 <Card.Text>Товаров Серебра</Card.Text>
                                                 <Link href="/admin/products">Посмотреть раздел</Link>
                                             </Card>
-                                        </Col>
+                                        </Col> */}
                                     </Row>
                                 </div>
                             )}
