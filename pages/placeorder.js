@@ -7,17 +7,37 @@ import Cookies from "js-cookie"
 import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
+import { useSession } from "next-auth/react"
 
 function PlaceOrderScreen() {
     const { state, dispatch } = useContext(Store)
     const { cart } = state
     const { cartItems, shippingAddress } = cart
 
+    const { data: session } = useSession()
+    
+    const [k,setK] = useState(1)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
+                setK(data.k)
+                /* setValue("k", data.k) */
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        if (session?.user) {
+            fetchData()
+        }
+    }, [session])
+
+
     const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
 
-    const itemsPrice = round2(cartItems.reduce((a, c) => a + c.quantity * c.price, 0)) // 123.4567 => 123.46
+    const itemsPrice = round2(cartItems.reduce((a, c) => a + c.quantity * c.price*k, 0)) // 123.4567 => 123.46
 
-  
 
     const router = useRouter();
     
@@ -40,7 +60,6 @@ function PlaceOrderScreen() {
             cartItems: [],
           })
         );
-        console.log(data)
         router.push(`/order/${data._id}`);
       } catch (err) {
         setLoading(false);

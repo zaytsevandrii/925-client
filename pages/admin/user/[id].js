@@ -51,7 +51,6 @@ export default function UserScreen() {
             try {
                 dispatch({ type: "FETCH_REQUEST" })
                 const { data } = await axios.get(`/api/admin/users/${productId}`)
-                console.log(data)
                 dispatch({ type: "FETCH_SUCCESS" })
                 setValue("name", data.name)
                 setValue("email", data.email)
@@ -140,7 +139,7 @@ export default function UserScreen() {
                                         {loadingUpdate ? "Загрузка" : "Обновить"}
                                     </Button>
                                     <div className="mb-4">
-                                        <Link href={`/admin/products`}>назад</Link>
+                                        <Link href={`/admin/users`}>назад</Link>
                                     </div>
                                 </Form>
                             )}

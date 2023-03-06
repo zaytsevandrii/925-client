@@ -33,7 +33,6 @@ function OrderScreen() {
             try {
                 dispatch({ type: "FETCH_REQUEST" })
                 const { data } = await axios.get(`/api/orders/${orderId}`)
-                console.log(data)
                 dispatch({ type: "FETCH_SUCCESS", payload: data })
             } catch (err) {
                 dispatch({ type: "FETCH_FAIL", payload: getError(err) })
@@ -70,7 +69,7 @@ function OrderScreen() {
                         </div>
                         <div className="row">
                             <div className="col-12 d-flex align-items-center  justify-content-center">
-                                <h3>ID вашего заказа № {orderId.substring(20, 24)}</h3>
+                                <h3>ID заказа № {orderId.substring(20, 24)}</h3>
                             </div>
                         </div>
 
@@ -97,6 +96,8 @@ function OrderScreen() {
                                                 <table className="table">
                                                     <thead className="thead-dark">
                                                         <tr>
+                                                            <th scope="col">ID тов.</th>
+                                                            <th scope="col">Slug !</th>
                                                             <th scope="col">Товар</th>
                                                             <th scope="col">Кол-во</th>
                                                         </tr>
@@ -104,6 +105,8 @@ function OrderScreen() {
                                                     <tbody>
                                                           {orderItems.map((item) => (
                                                             <tr key={item._id}>
+                                                                <td>{item._id.substring(20, 24)} </td>
+                                                                <td>{item.slug} </td>
                                                                 <td>{item.name} </td>
                                                                 <td>{item.quantity}</td>
                                                             </tr>
@@ -126,16 +129,7 @@ function OrderScreen() {
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col-12 d-flex align-items-center  justify-content-center">
-                                <h2>Спасибо, что вы нас выбрали</h2>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-12 d-flex align-items-center  justify-content-center">
-                                <h6>Мы с Вами свяжемся в ближайшее время</h6>
-                            </div>
-                        </div>
+                       
                     </div>
                 )}
             </div>

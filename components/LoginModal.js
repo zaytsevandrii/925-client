@@ -51,20 +51,19 @@ const LoginModal = ({ show, handleClose, allClose }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formBasicName">
+                   {/*  <Form.Group controlId="formBasicName">
                         <Form.Label>Имя</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Введите имя"
                             value={name}
-                            /* required */
                             onInvalid={(e) => e.target.setCustomValidity("Пожалуйста, введите имя")}
                             onChange={(e) => {
                                 e.target.setCustomValidity("")
                                 setName(e.target.value)
                             }}
                         />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Form.Group controlId="formBasicEmail" className="mt-3">
                         <Form.Label>Email </Form.Label>

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styles from "../../styles/ProductScreen.module.scss"
 import Image from "next/image"
 import { Store } from "../../utils/Store"
@@ -13,9 +13,26 @@ const ProductScreen = (props) => {
     const { product } = props
     const router = useRouter()
     const { state, dispatch } = useContext(Store)
+    const [k,setK] = useState(1)
+    const { status, data: session } = useSession()
     if (!product) {
-        return <div>product Not Found</div>
+        return <div>Товар не найден</div>
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
+                setK(data.k)
+                /* setValue("k", data.k) */
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        if (session?.user) {
+            fetchData()
+        }
+    }, [session])
 
     const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
@@ -29,7 +46,7 @@ const ProductScreen = (props) => {
         /*  router.push('/basket') */
     }
 
-    const { status, data: session } = useSession()
+    
     return (
         <div className="container ">
             <div className={styles.product}>
@@ -43,13 +60,20 @@ const ProductScreen = (props) => {
                         </div>
                         <div className="row">
                             {status === "loading" ? (
-                                <p>Цена: {product.price} тенге</p>
-                            ) : session?.user ? (
-                                <p>Цена: {product.salePrice} тенге</p>
+                                <p>Цена: {product.price} ₸</p>
+                            ) : k<1 ? (
+                                <p >Старая цена:  <span style={{ textDecoration: 'line-through'}}>
+                                {product.price} ₸
+                              </span></p>
                             ) : (
-                                <p>Цена: {product.price} тенге</p>
+                                <p>Цена: {product.price} ₸</p>
                             )}
                         </div>
+                        {k<1&&(
+                            <div className="row">
+                            <p>Оптовая цена: {product.price*k} ₸</p>
+                        </div>
+                        )}
                         <div className="row">
                             <p>Категория: {product.category}</p>
                         </div>

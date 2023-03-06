@@ -76,7 +76,7 @@ export default function AdminOrderScreen() {
                                                 <td>{order.itemsPrice}</td>
 
                                                 <td>
-                                                    <Link href={`/order/${order._id}`}>Детали</Link>
+                                                    <Link href={`/order2/${order._id}`}>Детали</Link>
                                                 </td>
                                             </tr>
                                         ))}

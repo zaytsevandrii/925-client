@@ -7,7 +7,7 @@ import styles from "../../../styles/Cart.module.scss"
 import { Store } from "../../../utils/Store"
 import { toast } from 'react-toastify';
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item,k }) => {
     const { state, dispatch } = useContext(Store)
     const removeItemHandler = (item) => {
         dispatch({ type: "CART_REMOVE_ITEM", payload: item })
@@ -15,7 +15,6 @@ const CartItem = ({ item }) => {
     const {
         cart: { cartItems },
     } = state
-    console.log(cartItems)
     const addToCartHandler = async (product, isAdd) => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
         let quantity = existItem ? existItem.quantity : 0
@@ -49,14 +48,7 @@ const CartItem = ({ item }) => {
                 </div>
 
                 <div className="row">
-                    {status === "loading" ? (
-                      <p className="my-0">Цена: {item.price}</p>
-                    ) : session?.user ? (
-                        <p className="my-0">Цена: {item.price}</p>
-                    ) : (
-                        <p className="my-0">Цена: {item.price}</p>
-                    )}
-                    
+                      <p className="my-0">Цена: {item.price*k} ₸</p>
                 </div>
                 <div className="row">
                     <div className="my-1 d-flex">
