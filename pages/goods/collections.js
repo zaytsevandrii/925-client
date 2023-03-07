@@ -28,10 +28,10 @@ const Сollections = ({products}) => {
     <div className={styles.rings}>
         <div className="container">
             <div className="row ">
-                <div className="col-3 filtrMenu d-lg-block d-none fixed-left" >
+                {/* <div className="col-3 filtrMenu d-lg-block d-none fixed-left" >
                    Тут будет фильтрация
-                </div>
-                <div className="col-lg-9 col-12  mt-2">
+                </div> */}
+                <div className="col-lg-12 col-12  mt-2">
                     <div className="row">
                         {products.map(product =>(
                           <ProductItem product={product} key={product.slug} k={k}/>

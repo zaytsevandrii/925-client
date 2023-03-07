@@ -9,20 +9,31 @@ import LoginModal from "./LoginModal"
 import { signOut, useSession } from "next-auth/react"
 import DropDownLink from "./DropDownLink"
 import Cookies from "js-cookie"
+import SearchModal from "./SearchModal"
 
 const Navbar = () => {
     const [showLoginModal, setShowLoginModal] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
     //Для проверки логина
     const { status, data: session } = useSession()
+
+    const handleSearchClick = () => {
+        setShowSearch(true)
+    }
+    const handleSearchClose = () => {
+        setShowSearch(false)
+    }
 
     const handleLoginClick = () => {
         setShowLoginModal(true)
     }
 
+    
     const handleLoginClose = () => {
         setShowLoginModal(false)
     }
     const allClose = () => {
+        setShowSearch(false)
         setShowLoginModal(false)
         setTimeout(() => setOpen(false), 70)
     }
@@ -76,7 +87,7 @@ const Navbar = () => {
                 <div className="topMobile">
                     <Image src="/loc.svg" alt="карта" width={37} height={37} />
                     <Image src="/phone.svg" alt="телефон" width={37} height={37} />{" "}
-                    <Image src="/search.svg" alt="поиск" width={37} height={37} className={styles.img1} />
+                    <Image src="/search.svg" alt="поиск" width={37} height={37} className={styles.img1} onClick={handleSearchClick}/>
                     {!session?.user &&<Image
                         src="/user.svg"
                         alt="логин"
@@ -158,7 +169,7 @@ const Navbar = () => {
                             </div>
                             <div className="col-4  d-flex align-items-center justify-content-end">
                                 <div className={styles.right}>
-                                    <Image src="/search.svg" alt="search" width={23} height={23} className={styles.img1} />
+                                    <Image src="/search.svg" alt="search" width={23} height={23} className={styles.img1} onClick={handleSearchClick} />
                                     <div className={styles.user}>
                                         {status === "loading" ? (
                                             <Image
@@ -233,6 +244,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <LoginModal show={showLoginModal} handleClose={handleLoginClose} allClose={allClose} />
+                <SearchModal show={showSearch} handleClose={handleSearchClose} allClose={allClose}/>
             </div>
         </>
     )

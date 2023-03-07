@@ -9,7 +9,7 @@ const ProductItem = ({ product,k }) => {
     const { status, data: session } = useSession()
 
     return (
-        <li className="col-md-4 col-6">
+        <li className="col-md-3 col-6">
             <div className="card border-0 p-1">
                 <Link href={`/product/${product.slug}`}>
                     <Image src={product.image} alt="ring" className="d-block w-100 h-auto" width={400} height={400} />

@@ -17,7 +17,11 @@ function PlaceOrderScreen() {
     const { data: session } = useSession()
     
     const [k,setK] = useState(1)
-
+    useEffect(() => {
+        if (cartItems.length===0) {
+            router.push('/')
+        }
+    }, [])
     useEffect(() => {
         const fetchData = async () => {
             try {
