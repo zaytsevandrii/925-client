@@ -156,7 +156,7 @@ export default function Search(props) {
                                             <option value="lowest">Цена: по возрастанию</option>
                                             <option value="highest">Цена: по убыванию</option>
                                             {/* <option value="toprated">Customer Reviews</option> */}
-                                            <option value="newest">Новые поступления</option>
+                                            <option value="newest">Новинки</option>
                                         </Form.Control>
                                     </Form.Group>
                                 </Col>

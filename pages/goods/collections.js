@@ -14,7 +14,6 @@ const Сollections = ({products}) => {
           try {
               const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
               setK(data.k)
-              /* setValue("k", data.k) */
           } catch (err) {
               console.log(err)
           }
@@ -28,9 +27,6 @@ const Сollections = ({products}) => {
     <div className={styles.rings}>
         <div className="container">
             <div className="row ">
-                {/* <div className="col-3 filtrMenu d-lg-block d-none fixed-left" >
-                   Тут будет фильтрация
-                </div> */}
                 <div className="col-lg-12 col-12  mt-2">
                     <div className="row">
                         {products.map(product =>(
