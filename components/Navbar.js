@@ -10,13 +10,14 @@ import { signOut, useSession } from "next-auth/react"
 import DropDownLink from "./DropDownLink"
 import Cookies from "js-cookie"
 import SearchModal from "./SearchModal"
+import { useRouter } from "next/router"
 
 const Navbar = () => {
     const [showLoginModal, setShowLoginModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
     //Для проверки логина
     const { status, data: session } = useSession()
-
+    const router = useRouter()
     const handleSearchClick = () => {
         setShowSearch(true)
     }
@@ -28,7 +29,6 @@ const Navbar = () => {
         setShowLoginModal(true)
     }
 
-    
     const handleLoginClose = () => {
         setShowLoginModal(false)
     }
@@ -39,7 +39,7 @@ const Navbar = () => {
     }
     const { state, dispatch } = useContext(Store)
     const { cart } = state
-    
+
     const [open, setOpen] = useState(false)
     const openModal = () => {
         setOpen((prev) => !prev)
@@ -49,10 +49,15 @@ const Navbar = () => {
     }
 
     const logoutClickHandler = () => {
-        Cookies.remove('cart');
-        dispatch({ type: 'CART_RESET' });
-        signOut({ callbackUrl: '/' });
-      };
+        Cookies.remove("cart")
+        dispatch({ type: "CART_RESET" })
+        signOut({ callbackUrl: "/" })
+    }
+
+    const addressClick = () => {
+        setTimeout(() => setOpen(false), 70)
+        router.push("/address")
+    }
 
     const [cartItemsCount, setCartItemsCount] = useState(0)
     useEffect(() => {
@@ -85,24 +90,36 @@ const Navbar = () => {
             <div className={`${open && "overlay-show"}`}></div>
             <div id="mobile-menu" className={`mobile-main-menu ${open && "show-menu"}`}>
                 <div className="topMobile">
-                    <Image src="/loc.svg" alt="карта" width={37} height={37} />
-                    <Image src="/phone.svg" alt="телефон" width={37} height={37} />{" "}
-                    <Image src="/search.svg" alt="поиск" width={37} height={37} className={styles.img1} onClick={handleSearchClick}/>
-                    {!session?.user &&<Image
-                        src="/user.svg"
-                        alt="логин"
+                    <Image src="/loc.svg" alt="карта" width={37} height={37} onClick={addressClick} className="img" />
+                   {/*  <a href="tel:+380631517990">
+                        <Image src="/phone.svg" alt="телефон" width={37} height={37} className="img" />
+                    </a> */}
+                    <Image
+                        src="/search.svg"
+                        alt="поиск"
                         width={37}
                         height={37}
-                        className={styles.img2}
-                        onClick={handleLoginClick}
-                    />}
-                    
+                        className="img"
+                        /* className={styles.img1} */
+                        onClick={handleSearchClick}
+                    />
+                    {!session?.user && (
+                        <Image
+                            src="/user.svg"
+                            alt="логин"
+                            width={37}
+                            height={37}
+                            /* className={styles.img2} */
+                            className="img"
+                            onClick={handleLoginClick}
+                        />
+                    )}
                 </div>
                 <ul>
                     <Link href="/goods/collections">
                         <li onClick={closeModal}>Серебро</li>
                     </Link>
-                        
+
                     <Link href="/goods/earings">
                         <li onClick={closeModal}>Серьги </li>
                     </Link>
@@ -139,22 +156,22 @@ const Navbar = () => {
                         <div className="row">
                             <div className="col-4  d-flex align-items-center">
                                 <div className={styles.left}>
-                                    <div className={styles.map}>
-                                        <Image src="/loc.svg" alt="search" width={23} height={23} />
-
-                                        <div>
-                                            АСТАНА <br />
-                                            пунткты выдачи
+                                    <Link href="/address" style={{ color: "#fff" }}>
+                                        <div className={styles.map}>
+                                            <Image src="/loc.svg" alt="search" width={23} height={23} />
+                                            <div>
+                                                Наши <br />
+                                                пунткты выдачи
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                     <div className={styles.phone}>
                                         <Image src="/phone.svg" alt="search" width={23} height={23} />
                                         <div>
-                                            8 800 500 500 <br />
+                                            8 775 623 49 63 <br />
                                             горячая линия
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <div className={styles.leftH}>
                                     <Hamburger open={open} openModal={openModal} />
@@ -169,7 +186,14 @@ const Navbar = () => {
                             </div>
                             <div className="col-4  d-flex align-items-center justify-content-end">
                                 <div className={styles.right}>
-                                    <Image src="/search.svg" alt="search" width={23} height={23} className={styles.img1} onClick={handleSearchClick} />
+                                    <Image
+                                        src="/search.svg"
+                                        alt="search"
+                                        width={23}
+                                        height={23}
+                                        className={styles.img1}
+                                        onClick={handleSearchClick}
+                                    />
                                     <div className={styles.user}>
                                         {status === "loading" ? (
                                             <Image
@@ -182,7 +206,12 @@ const Navbar = () => {
                                             />
                                         ) : session?.user ? (
                                             <div className={styles.userName}>
-                                                <DropDownLink className={styles.dropdown} userName={session.user.name} logoutClickHandler={logoutClickHandler} session={session}/>
+                                                <DropDownLink
+                                                    className={styles.dropdown}
+                                                    userName={session.user.name}
+                                                    logoutClickHandler={logoutClickHandler}
+                                                    session={session}
+                                                />
                                                 {/* {session.user.name.charAt(0).toUpperCase()} */}
                                             </div>
                                         ) : (
@@ -244,7 +273,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <LoginModal show={showLoginModal} handleClose={handleLoginClose} allClose={allClose} />
-                <SearchModal show={showSearch} handleClose={handleSearchClose} allClose={allClose}/>
+                <SearchModal show={showSearch} handleClose={handleSearchClose} allClose={allClose} />
             </div>
         </>
     )

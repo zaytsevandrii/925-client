@@ -96,7 +96,7 @@ const LoginModal = ({ show, handleClose, allClose }) => {
                         />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit" className="mt-3 w-100">
+                    <Button variant="dark" type="submit" className="mt-3 w-100" onClick={allClose}>
                         Логин
                     </Button>
                 </Form>

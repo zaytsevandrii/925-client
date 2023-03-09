@@ -10,8 +10,6 @@ a {
     text-decoration: none !important;
 }
 
-
-
 * {
     box-sizing: border-box;
 }
@@ -124,7 +122,9 @@ a {
             padding: 7px;
             border: 1px solid #ebebeb1f;
         }
-        img {
+       
+        .img {
+            list-style: none;
             flex: 1;
             padding: 7px;
             border: 1px solid #ebebeb1f;
@@ -156,14 +156,13 @@ a {
         margin-top: 25px;
         @media (max-width: 415px) {
             margin-top: 30px;
-
         }
 
         a {
             color: #fff;
             transition: color 0.6s;
             li {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
                 font-size: 18px;
                 text-transform: uppercase;
                 border-bottom: 1px #555 dotted;
@@ -196,11 +195,17 @@ a {
   padding: 10px;
 } */
 
-
-.btn{
-    &:active{
+.btn {
+    &:active {
         transform: translateY(6%);
     }
 }
 
 
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #000000;
+    border: none;
+    background-color: red;
+}
