@@ -2,7 +2,6 @@ import axios from "axios"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import React, { useContext } from "react"
-import img2 from "../../../public/collections/ring1.jpg"
 import styles from "../../../styles/Cart.module.scss"
 import { Store } from "../../../utils/Store"
 import { toast } from 'react-toastify';
@@ -52,7 +51,7 @@ const CartItem = ({ item,k }) => {
                 </div>
                 <div className="row">
                     <div className="my-1 d-flex">
-                        Количество:{" "}
+                        Количество:
                         <div className={styles.btns}>
                             <button className="btn btn-dark py-0 px-1 mx-2" onClick={() => addToCartHandler(item, true)}>
                                 +
@@ -73,6 +72,7 @@ const CartItem = ({ item,k }) => {
                     </div>
                 </div>
             </div>
+            <div><hr className='hr'/></div>
         </div>
     )
 }

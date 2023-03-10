@@ -15,10 +15,19 @@ const Footer = () => {
                             <h5 className="text-uppercase">
                                 <Image alt="Dimax media logo" src={dimax} width={120} height={60} />
                             </h5>
-                            <p>Сеть ювелирных магазинов</p>
-                            <div className="sub-title" style={{ marginTop: "-14px", marginBottom: "4px" }}>
+
+                            <div className="sub-title mt-1" style={{ marginTop: "-14px", marginBottom: "4px" }}>
+                                <a href="tel:+380631517990" className="col-item" style={{ marginLeft: "10px", color: "#fff" }}>
+                                    <Image src="/phone.svg" alt="search" width={20} height={20} /> 8 7775 623 49 63
+                                </a>
+                            </div>
+                            <div className="sub-title mt-1" style={{ marginTop: "-14px", marginBottom: "4px" }}>
                                 E-mail:
-                                <a href="mailto:info@925kazakhstan.com" className="col-item" style={{ marginLeft: "10px", color:'#fff' }}>
+                                <a
+                                    href="mailto:info@925kazakhstan.com"
+                                    className="col-item"
+                                    style={{ marginLeft: "10px", color: "#fff" }}
+                                >
                                     info@925.com
                                 </a>
                             </div>
@@ -35,10 +44,18 @@ const Footer = () => {
                         <div className="col-md-4 mb-md-0 mb-3">
                             <h5 className="text-uppercase">ПОКУПАТЕЛЯМ</h5>
                             <ul className="list-unstyled">
-                            <li>Скупка и обмен</li>
+                                <Link href="/delivery">
+                                    <li>Доставка и оплата</li>
+                                </Link>
+                                <Link href="/quality">
                                     <li>Гарантия качества</li>
-                                    <li>Часто задаваемые вопросы</li>
-                                    <li>Ювелирные сертификаты</li>
+                                </Link>
+                                <Link href="/watch">
+                                    <li>Часы на заказ</li>
+                                </Link>
+                                <Link href="/jewelry">
+                                    <li>Ювелирные украшения</li>
+                                </Link>
                             </ul>
                         </div>
 

@@ -79,9 +79,9 @@ function CartScreen()  {
                                 <h1>Корзина</h1>
                             </div>
                         </div>
-                        <div className="row">
+                       {/*  <div className="row">
                             <p>Продолжить покупки</p>
-                        </div>
+                        </div> */}
                         <div className="row">
                             <div className="col-lg-8 mt-2">
                                 {cartItems.map(item=>(

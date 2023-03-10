@@ -1,6 +1,6 @@
-.cart{
+.cart {
     min-height: 60vh;
-    
+
     @media (max-width: 912px) {
         min-height: 72vh;
     }
@@ -11,32 +11,43 @@
         min-height: auto;
     }
 
-    h1{
+    h1 {
         margin-top: 30px;
     }
 
-    h2{
+    h2 {
         margin-top: 30px;
     }
 
-    .empty{
+    .empty {
         margin-top: 30px;
         width: auto;
         height: auto;
     }
 
-    .back{
+    .back {
         margin-top: 30px;
     }
 
-    .image{
-        @media (max-width:767px){
+    .image {
+        position:relative;
+        @media (max-width: 767px) {
             width: 50%;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            opacity: 0.02;
         }
     }
 
-    .btns{
-        button{
+    .btns {
+        button {
             width: 30px;
             height: 30px;
             margin-top: -7px;
@@ -44,10 +55,9 @@
     }
 }
 
-
-.order{
+.order {
     min-height: 60vh;
-    
+
     @media (max-width: 912px) {
         min-height: 72vh;
     }
@@ -59,10 +69,10 @@
     }
 }
 
-.placeOrder{
+.placeOrder {
     font-family: "Roboto", sans-serif;
     min-height: 60vh;
-    
+
     @media (max-width: 912px) {
         min-height: 72vh;
     }
@@ -73,19 +83,19 @@
         min-height: auto;
     }
 
-    h1{
+    h1 {
         margin-top: 30px;
     }
 
-    h2{
+    h2 {
         margin-top: 30px;
     }
 }
 
-.orderHistory{
+.orderHistory {
     font-family: "Roboto", sans-serif;
     min-height: 60vh;
-    
+
     @media (max-width: 912px) {
         min-height: 72vh;
     }
@@ -97,9 +107,10 @@
     }
 }
 
-.admin{
+.admin {
+    font-family: "Roboto", sans-serif;
     min-height: 60vh;
-    
+
     @media (max-width: 912px) {
         min-height: 72vh;
     }

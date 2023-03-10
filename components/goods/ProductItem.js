@@ -10,9 +10,9 @@ const ProductItem = ({ product,k }) => {
 
     return (
         <li className="col-md-3 col-6">
-            <div className="card border-0 p-1">
-                <Link href={`/product/${product.slug}`}>
-                    <Image src={product.image} alt="ring" className="d-block w-100 h-auto" width={400} height={400} blurDataURL={product.image} placeholder='blur' />
+            <div className="card border-0 p-1 ">
+                <Link href={`/product/${product.slug}`} className="card2">
+                    <Image src={product.image} alt="ring" className="d-block w-100 h-auto " width={400} height={400} blurDataURL={product.image} placeholder='blur' />
                 </Link>
                 <div className="card-body p-2">
                     <h6>{product.name}</h6>

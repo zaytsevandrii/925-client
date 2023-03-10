@@ -5,12 +5,11 @@ import ProductItem from "../../components/goods/ProductItem"
 import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
 import db from "../../utils/db"
-import { Container, Row, Col, Form, Button } from "react-bootstrap"
 
 
 const pageSize = 40
 
-const Сollections = ({ products }) => {
+const WatchScreen = ({ products }) => {
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
@@ -100,7 +99,7 @@ const Сollections = ({ products }) => {
     )
 }
 
-export default Сollections
+export default WatchScreen
 
 /* export async function getStaticProps() {
     await db.connect()
@@ -114,7 +113,7 @@ export default Сollections
 
 export async function getStaticProps() {
     await db.connect()
-    const products = await Product.find({ category: "Серебро" }).lean()
+    const products = await Product.find({ category: "Часы" }).lean()
     return {
         props: {
             products: products.map(db.convertDocToObj),

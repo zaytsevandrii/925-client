@@ -120,12 +120,12 @@ const Navbar = () => {
                         <li onClick={closeModal}>Серебро</li>
                     </Link>
 
-                    <Link href="/goods/earings">
-                        <li onClick={closeModal}>Серьги </li>
+                    <Link href="/goods/bijouterie">
+                        <li onClick={closeModal}>Бижутерия </li>
                     </Link>
 
-                    <Link href="/goods/rings">
-                        <li onClick={closeModal}>Кольца </li>
+                    <Link href="/goods/watch">
+                        <li onClick={closeModal}>Часы </li>
                     </Link>
 
                     <Link href="/goods/necklaces">
@@ -249,26 +249,29 @@ const Navbar = () => {
                         <Link href="/goods/collections">
                             <li>Серебро</li>
                         </Link>
-                        <Link href="/goods/earings">
-                            <li>серьги</li>
+                        <Link href="/goods/bijouterie">
+                            <li>Бижутерия</li>
                         </Link>
-                        <Link href="/goods/rings">
-                            <li>кольца</li>
+                        <Link href="/goods/watch">
+                            <li>Часы</li>
                         </Link>
                         <Link href="/goods/necklaces">
-                            <li>ожерелья</li>
+                            <li>Сумки</li>
                         </Link>
                         <Link href="/goods/pendants">
-                            <li>подвески</li>
+                            <li>Детские украшения</li>
                         </Link>
                         <Link href="/goods/bracelets">
-                            <li>браслеты</li>
+                            <li>Шарфы</li>
                         </Link>
                         <Link href="/delivery">
-                            <li>доставка и оплата</li>
+                            <li>Парфюмерия</li>
                         </Link>
                         <Link href="/about">
-                            <li>о нас</li>
+                            <li>Натуральные камни</li>
+                        </Link>
+                        <Link href="/about">
+                            <li>Новинки</li>
                         </Link>
                     </div>
                 </div>

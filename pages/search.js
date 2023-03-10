@@ -12,7 +12,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap"
 import Image from "next/image"
 import styles from "../styles/Seatch.module.scss"
 
-const PAGE_SIZE = 20
+const PAGE_SIZE = 10
 
 const prices = [
     {
@@ -178,7 +178,7 @@ export default function Search(props) {
                                             [...Array(pages).keys()].map((pageNumber) => (
                                                 <li key={pageNumber}>
                                                     <Button
-                                                        variant="primary"
+                                                        variant="dark"
                                                         className={`m-2 ${page == pageNumber + 1 ? "fw-bold" : ""}`}
                                                         onClick={() => pageHandler(pageNumber + 1)}
                                                     >

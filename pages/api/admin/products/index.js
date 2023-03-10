@@ -28,7 +28,7 @@ const postHandler = async (req, res) => {
   await db.connect();
   const newProduct = new Product({
     name: 'имя',
-    slug: 'slug',
+    slug: 'sample-name-' + Math.random(),
     image: '/images/ring1.jpg',
     price: 0,
     salePrice:0,

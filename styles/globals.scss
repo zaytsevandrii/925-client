@@ -209,3 +209,28 @@ a {
     border: none;
     background-color: red;
 }
+
+.list-unstyled{
+    a{
+        color: #fff;
+    }
+}
+
+.card2 {
+    position: relative;
+}
+
+.card2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.02;
+}
+
+.hr{
+    border: 1px solid #bdbdbd;
+}

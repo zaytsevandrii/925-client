@@ -51,7 +51,7 @@ const ProductScreen = (props) => {
         <div className="container ">
             <div className={styles.product}>
                 <div className="row">
-                    <div className="col-md-5 mt-3">
+                    <div className="col-md-5 mt-3 card2">
                         <Image src={product.image} alt={product.name} width={500} height={500} className="w-100 h-auto" />
                     </div>
                     <div className="col-md-6 mt-3">

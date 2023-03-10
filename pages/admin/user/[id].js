@@ -95,7 +95,7 @@ export default function UserScreen() {
                                 <Form className="mx-auto max-w-screen-md" onSubmit={handleSubmit(submitHandler)}>
                                     <h1 className="mb-4 text-xl">{`Пользователь с ID ${productId}`}</h1>
                                     <Form.Group className="mb-4" controlId="name">
-                                        <Form.Label>Имя</Form.Label>
+                                        <Form.Label>Имя - не изменять!</Form.Label>
                                         <Form.Control
                                             type="text"
                                             autoFocus
@@ -106,7 +106,7 @@ export default function UserScreen() {
                                         {errors.name && <div className="text-danger">{errors.name.message}</div>}
                                     </Form.Group>
                                     <Form.Group className="mb-4" controlId="email">
-                                        <Form.Label>Email ! Шифр(буквы и цифры без пробелов)</Form.Label>
+                                        <Form.Label>Email  - не изменять!</Form.Label>
                                         <Form.Control
                                             type="text"
                                             {...register("email", {
@@ -117,7 +117,7 @@ export default function UserScreen() {
                                     </Form.Group>
                                     
                                     <Form.Group className="mb-4" controlId="k">
-                                        <Form.Label>Скидка %</Form.Label>
+                                        <Form.Label style={{fontSize:'700'}}>Скидка %</Form.Label>
                                         <Form.Select
                                             {...register("k", {
                                                 required: "Выберите категорию",
