@@ -62,10 +62,10 @@ const Footer = () => {
                         <div className="col-md-4 mb-md-0 mb-3">
                             <h5 className="text-uppercase">НАША КОМПАНИЯ</h5>
                             <ul className="list-unstyled">
-                                <li>Новости</li>
-                                <li>Партнерам</li>
-                                <li>Франчайзинг</li>
-                                <li>Правовая Информация</li>
+                            <Link href="/about"><li>О нас</li></Link>
+                            <Link href="/optscreen"><li>Партнерам</li></Link>
+                                <Link href="/franchise"><li>Франчайзинг</li></Link>
+                                <Link href="/legal-terms"><li>Правовая Информация</li></Link>
                             </ul>
                         </div>
                     </div>

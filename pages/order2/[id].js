@@ -48,7 +48,7 @@ function OrderScreen() {
         itemsPrice,
       
       } = order;
-
+      console.log(shippingAddress)
     return (
         <>
             <div className={styles.placeOrder}>
@@ -81,7 +81,7 @@ function OrderScreen() {
                                             <h5 className="card-header">Данные покупателя</h5>
                                             <div className="card-body">
                                                 <h6 className="card-text">
-                                                    {shippingAddress.fullName}, {shippingAddress.address}, {shippingAddress.city}, {shippingAddress.country}
+                                                    {shippingAddress.fullName}, {shippingAddress.address}, {shippingAddress.phone}, {shippingAddress.city}, {shippingAddress.country}
                                                 </h6>
                                                 
                                             </div>

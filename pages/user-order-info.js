@@ -10,6 +10,7 @@ const userOrderScreen = () => {
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [country, setCountry] = useState("")
+    const [phone, setPhone] = useState("")
 
     const { state, dispatch } = useContext(Store)
     const { cart } = state
@@ -25,7 +26,7 @@ const userOrderScreen = () => {
         event.preventDefault()
         dispatch({
             type: "SAVE_SHIPPING_ADDRESS",
-            payload: { fullName, address, city, country },
+            payload: { fullName, address, phone, city, country },
         })
         Cookies.set(
             "cart",
@@ -34,6 +35,7 @@ const userOrderScreen = () => {
                 shippingAddress: {
                     fullName,
                     address,
+                    phone,
                     city,
                     country,
                 },
@@ -67,6 +69,16 @@ const userOrderScreen = () => {
                                     placeholder="Введите ваш адрес"
                                     value={address}
                                     onChange={(event) => setAddress(event.target.value)}
+                                    required
+                                />
+                            </Form.Group>
+                            <Form.Group controlId="formCity" className="mt-2">
+                                <Form.Label>Телефон</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Введите ваш город"
+                                    value={phone}
+                                    onChange={(event) => setPhone(event.target.value)}
                                     required
                                 />
                             </Form.Group>

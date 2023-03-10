@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useRouter } from "next/router"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import Layout from "../components/Layout"
 import { Store } from "../utils/Store"
@@ -11,6 +11,7 @@ import db from "../utils/db"
 import { Container, Row, Col, Form, Button } from "react-bootstrap"
 import Image from "next/image"
 import styles from "../styles/Seatch.module.scss"
+import { useSession } from "next-auth/react"
 
 const PAGE_SIZE = 10
 
@@ -33,7 +34,8 @@ const ratings = [1, 2, 3, 4, 5]
 
 export default function Search(props) {
     const router = useRouter()
-
+    const { status, data: session } = useSession()
+    const [k, setK] = useState(1)
     const {
         query = "all",
         category = "all",
@@ -94,6 +96,20 @@ export default function Search(props) {
         dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })
         router.push("/cart")
     }
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
+                setK(data.k)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        if (session?.user) {
+            fetchData()
+        }
+    }, [session])
     return (
         <>
             <div className={styles.search}>
@@ -170,6 +186,7 @@ export default function Search(props) {
                                                 key={product._id}
                                                 product={product}
                                                 addToCartHandler={addToCartHandler}
+                                                k={k}
                                             />
                                         ))}
                                     </Row>

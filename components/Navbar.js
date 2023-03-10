@@ -128,22 +128,25 @@ const Navbar = () => {
                         <li onClick={closeModal}>Часы </li>
                     </Link>
 
-                    <Link href="/goods/necklaces">
-                        <li onClick={closeModal}>Ожерелья</li>
+                    <Link href="/goods/bags">
+                        <li onClick={closeModal}>Сумки</li>
                     </Link>
-                    <Link href="/goods/pendants">
-                        <li onClick={closeModal}>Подвески</li>
+                    <Link href="/goods/children-jewelry">
+                        <li onClick={closeModal}>Детские украшения</li>
                     </Link>
-                    <Link href="/goods/bracelets">
-                        <li onClick={closeModal}>Браслеты</li>
+                    <Link href="/goods/scarves">
+                        <li onClick={closeModal}>Шарфы</li>
                     </Link>
-                    <Link href="/delivery">
-                        <li onClick={closeModal}>Доставка и оплата</li>
+                    <Link href="/goods/perfumery">
+                        <li onClick={closeModal}>Парфюмерия</li>
+                    </Link>
+                    <Link href="/goods/natural-stones">
+                        <li onClick={closeModal}>Натуральные камни</li>
+                    </Link>
+                    <Link href="/goods/new-product">
+                        <li onClick={closeModal}>Новинки</li>
                     </Link>
 
-                    <Link href="/about">
-                        <li onClick={closeModal}>О нас </li>
-                    </Link>
                 </ul>
                 <div className="mobile-menu-info">
                     © 2023
@@ -255,22 +258,22 @@ const Navbar = () => {
                         <Link href="/goods/watch">
                             <li>Часы</li>
                         </Link>
-                        <Link href="/goods/necklaces">
+                        <Link href="/goods/bags">
                             <li>Сумки</li>
                         </Link>
-                        <Link href="/goods/pendants">
+                        <Link href="/goods/children-jewelry">
                             <li>Детские украшения</li>
                         </Link>
-                        <Link href="/goods/bracelets">
+                        <Link href="/goods/scarves">
                             <li>Шарфы</li>
                         </Link>
-                        <Link href="/delivery">
+                        <Link href="/goods/perfumery">
                             <li>Парфюмерия</li>
                         </Link>
-                        <Link href="/about">
+                        <Link href="/goods/natural-stones">
                             <li>Натуральные камни</li>
                         </Link>
-                        <Link href="/about">
+                        <Link href="/goods/new-product">
                             <li>Новинки</li>
                         </Link>
                     </div>

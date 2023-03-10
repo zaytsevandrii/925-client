@@ -70,7 +70,7 @@ function PlaceOrderScreen() {
         toast.error('Необходимо авторизоваться');
       }
     };
-
+    console.log(shippingAddress)
     return (
         <>
 
@@ -95,8 +95,7 @@ function PlaceOrderScreen() {
                                             <h5 className="card-header">Данные покупателя</h5>
                                             <div className="card-body">
                                                 <p className="card-text">
-                                                    {shippingAddress.fullName}, {shippingAddress.address}, {shippingAddress.city},
-                                                    {shippingAddress.country}
+                                                    {shippingAddress.fullName}, {shippingAddress.address}, {shippingAddress.phone}, {shippingAddress.city},  {shippingAddress.country}
                                                 </p>
                                                 <div style={{ color: "blue" }}>
                                                     <Link href="/user-order-info">редактировать</Link>
