@@ -32,7 +32,7 @@ const ProductScreen = (props) => {
         if (session?.user) {
             fetchData()
         }
-    }, [session])
+    }, [session,product])
 
     const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
@@ -71,7 +71,7 @@ const ProductScreen = (props) => {
                         </div>
                         {k<1&&(
                             <div className="row">
-                            <p>Оптовая цена: {product.price*k} ₸</p>
+                            <p>Оптовая цена: {Math.round(product.price*k)} ₸</p>
                         </div>
                         )}
                         <div className="row">

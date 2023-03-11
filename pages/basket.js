@@ -94,7 +94,7 @@ function CartScreen()  {
                                     <h5 className="card-header">Стоимость товаров без учета доставки</h5>
                                     <div className="card-body">
                                         
-                                           <h5 className="card-title">Сумма покупки: {cartItems.reduce((a,c)=>a+c.quantity*c.price*k,0)} ₸</h5>
+                                           <h5 className="card-title">Сумма покупки: {Math.round(cartItems.reduce((a,c)=>a+c.quantity*c.price*k,0))} ₸</h5>
                                           
                                         <p className="card-text">
                                             Нужна помощь с заказом? <br /> 8 800 500 500

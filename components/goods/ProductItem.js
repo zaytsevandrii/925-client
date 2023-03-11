@@ -21,7 +21,7 @@ const ProductItem = ({ product,k }) => {
                         {status === "loading" ? (
                             <p className="card-text">{product.price} ₸</p>
                         ) : session?.user ? (
-                            <p className="card-text">{product.price*k} ₸</p>
+                            <p className="card-text">{Math.round(product.price*k)} ₸</p>
                         ) : (
                             <p className="card-text">{product.price} ₸</p>
                         )}

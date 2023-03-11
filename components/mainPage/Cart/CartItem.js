@@ -47,7 +47,7 @@ const CartItem = ({ item,k }) => {
                 </div>
 
                 <div className="row">
-                      <p className="my-0">Цена: {item.price*k} ₸</p>
+                      <p className="my-0">Цена: {Math.round(item.price*k)} ₸</p>
                 </div>
                 <div className="row">
                     <div className="my-1 d-flex">

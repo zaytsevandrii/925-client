@@ -8,7 +8,6 @@ import db from "../../utils/db"
 import { Container, Row, Col, Form, Button } from "react-bootstrap"
 import Meta from "../../components/Meta"
 
-
 const pageSize = 40
 
 const Сollections = ({ products }) => {
@@ -56,7 +55,12 @@ const Сollections = ({ products }) => {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
     return (
-        <><Meta title='Серебро оптом и в розницу' keywords="серьги, ожерелья, подвески, кольца, браслеты, цепоки" description='Мы предлагаем твоары из серебра высочайшего качества и по доступной цене'/>
+        <>
+            <Meta
+                title="Серебро оптом и в розницу"
+                keywords="серьги, ожерелья, подвески, кольца, браслеты, цепоки"
+                description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
+            />
             <div className={styles.rings}>
                 <div className="container">
                     <div className="row ">
@@ -82,11 +86,12 @@ const Сollections = ({ products }) => {
                             <nav aria-label="Page navigation">
                                 <ul className="pagination mt-2">
                                     {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-                                        <li
-                                            key={page}
-                                            className={`page-item${currentPage === page ? " active" : ""}`}
-                                        >
-                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}<button className={`page-link ${currentPage === page ? "bg-dark" : ""}`} onClick={() => handlePageChange(page)}>
+                                        <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
+                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
+                                            <button
+                                                className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
+                                                onClick={() => handlePageChange(page)}
+                                            >
                                                 {page}
                                             </button>
                                         </li>

@@ -7,7 +7,6 @@ import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
 import db from "../../utils/db"
 
-
 const pageSize = 40
 
 const NewProductScreen = ({ products }) => {
@@ -55,7 +54,8 @@ const NewProductScreen = ({ products }) => {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
     return (
-        <><Meta title="Новинки"  />
+        <>
+            <Meta title="Новинки" />
             <div className={styles.rings}>
                 <div className="container">
                     <div className="row ">
@@ -81,11 +81,12 @@ const NewProductScreen = ({ products }) => {
                             <nav aria-label="Page navigation">
                                 <ul className="pagination mt-2">
                                     {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-                                        <li
-                                            key={page}
-                                            className={`page-item${currentPage === page ? " active" : ""}`}
-                                        >
-                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}<button className={`page-link ${currentPage === page ? "bg-dark" : ""}`} onClick={() => handlePageChange(page)}>
+                                        <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
+                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
+                                            <button
+                                                className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
+                                                onClick={() => handlePageChange(page)}
+                                            >
                                                 {page}
                                             </button>
                                         </li>
@@ -101,7 +102,6 @@ const NewProductScreen = ({ products }) => {
 }
 
 export default NewProductScreen
-
 
 export async function getStaticProps() {
     await db.connect()

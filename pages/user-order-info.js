@@ -5,7 +5,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap"
 import { Store } from "../utils/Store"
 import styles from '../styles/Cart.module.scss'
 
-const userOrderScreen = () => {
+const UserOrderScreen = () => {
     const [fullName, setFullName] = useState("")
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
@@ -114,4 +114,4 @@ const userOrderScreen = () => {
     )
 }
 
-export default userOrderScreen
+export default UserOrderScreen
