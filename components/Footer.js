@@ -31,7 +31,7 @@ const Footer = () => {
                                     info@925.com
                                 </a>
                             </div>
-                            <a href="https://wa.me/+444444444" target="_blank" rel="noreferrer">
+                            <a href="https://wa.me/87756234963" target="_blank" rel="noreferrer">
                                 <Image src={img} alt="whatsapp" width={25} height={25} style={{ marginRight: "10px" }} />
                                 <span className="social-item-text" style={{ color: "#73BE73" }}>
                                     WhatsApp
