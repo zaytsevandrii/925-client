@@ -2,6 +2,7 @@ import axios from "axios"
 import { useSession } from "next-auth/react"
 import React, { useEffect, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
+import Meta from "../../components/Meta"
 import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
 import db from "../../utils/db"
@@ -54,7 +55,7 @@ const NewProductScreen = ({ products }) => {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
     return (
-        <>
+        <><Meta title="Новинки"  />
             <div className={styles.rings}>
                 <div className="container">
                     <div className="row ">

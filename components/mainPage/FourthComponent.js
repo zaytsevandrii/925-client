@@ -12,17 +12,17 @@ const FourthComponent = () => {
             <div className={styles.four}>
                 <div className="row">
                     <div className="col-md-4 mt-3">
-                        <Link href="/goods/earings">
+                        <Link href="/goods/bags">
                             <Image src={img7} alt="Special" className="d-block w-100 h-auto" />
                         </Link>
                     </div>
                     <div className="col-md-4 mt-3">
-                        <Link href="/goods/pendants">
+                        <Link href="/goods/scarves">
                             <Image src={img8} alt="Special" className="d-block w-100 h-auto" />
                         </Link>
                     </div>
                     <div className="col-md-4 mt-3">
-                        <Link href="/goods/rings">
+                        <Link href="/goods/perfumery">
                             <Image src={img9} alt="logo" className="d-block w-100 h-auto" />
                         </Link>
                     </div>

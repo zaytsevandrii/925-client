@@ -2,6 +2,7 @@ import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useEffect, useReducer } from "react"
+import Meta from "../../components/Meta"
 import styles from "../../styles/Cart.module.scss"
 import { getError } from "../../utils/error"
 
@@ -42,15 +43,11 @@ function OrderScreen() {
             fetchOrder()
         }
     }, [order, orderId])
-    const {
-        shippingAddress,
-        orderItems,
-        itemsPrice,
-      
-      } = order;
+    const { shippingAddress, orderItems, itemsPrice } = order
 
     return (
         <>
+            <Meta title={`ID вашего заказа № ${orderId.substring(20, 24)}`} />
             <div className={styles.placeOrder}>
                 {loading ? (
                     <div className="container col-12 d-flex align-items-center  justify-content-center">
@@ -58,7 +55,7 @@ function OrderScreen() {
                     </div>
                 ) : error ? (
                     <div className="container col-12 d-flex align-items-center  justify-content-center">
-                        <h2 >Заказ обрабатывается...</h2>
+                        <h2>Заказ обрабатывается...</h2>
                     </div>
                 ) : (
                     <div className="container">
@@ -81,9 +78,9 @@ function OrderScreen() {
                                             <h5 className="card-header">Данные покупателя</h5>
                                             <div className="card-body">
                                                 <h6 className="card-text">
-                                                    {shippingAddress.fullName}, {shippingAddress.address}, {shippingAddress.phone}, {shippingAddress.city}, {shippingAddress.country}
+                                                    {shippingAddress.fullName}, {shippingAddress.address}, {shippingAddress.phone}
+                                                    , {shippingAddress.city}, {shippingAddress.country}
                                                 </h6>
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +98,7 @@ function OrderScreen() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                          {orderItems.map((item) => (
+                                                        {orderItems.map((item) => (
                                                             <tr key={item._id}>
                                                                 <td>{item.name} </td>
                                                                 <td>{item.quantity}</td>

@@ -2,10 +2,10 @@ import axios from "axios"
 import { useSession } from "next-auth/react"
 import React, { useEffect, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
+import Meta from "../../components/Meta"
 import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
 import db from "../../utils/db"
-
 
 const pageSize = 40
 
@@ -55,6 +55,7 @@ const BagsScreen = ({ products }) => {
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
     return (
         <>
+            <Meta title="Сумки оптом и в розницу" description="Мы предлагаем сумки высочайшего качества и по доступной цене" />
             <div className={styles.rings}>
                 <div className="container">
                     <div className="row ">
@@ -80,11 +81,12 @@ const BagsScreen = ({ products }) => {
                             <nav aria-label="Page navigation">
                                 <ul className="pagination mt-2">
                                     {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-                                        <li
-                                            key={page}
-                                            className={`page-item${currentPage === page ? " active" : ""}`}
-                                        >
-                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}<button className={`page-link ${currentPage === page ? "bg-dark" : ""}`} onClick={() => handlePageChange(page)}>
+                                        <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
+                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
+                                            <button
+                                                className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
+                                                onClick={() => handlePageChange(page)}
+                                            >
                                                 {page}
                                             </button>
                                         </li>

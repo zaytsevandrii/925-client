@@ -11,12 +11,12 @@ const FifthComponent = () => {
             <div className={styles.five}>
                 <div className="row">
                     <div className="col-md-6 mt-3">
-                        <Link href="/goods/necklaces">
+                        <Link href="/goods/watch">
                             <Image src={img10} alt="Special" className="d-block w-100 h-auto" />
                         </Link>
                     </div>
                     <div className="col-md-6 mt-3">
-                        <Link href="/goods/bracelets">
+                        <Link href="/goods/children-jewelry">
                             <Image src={img11} alt="logo" className="d-block w-100 h-auto" />
                         </Link>
                     </div>

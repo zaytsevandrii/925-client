@@ -6,6 +6,7 @@ import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
 import db from "../../utils/db"
 import { Container, Row, Col, Form, Button } from "react-bootstrap"
+import Meta from "../../components/Meta"
 
 
 const pageSize = 40
@@ -55,7 +56,7 @@ const Сollections = ({ products }) => {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
     return (
-        <>
+        <><Meta title='Серебро оптом и в розницу' keywords="серьги, ожерелья, подвески, кольца, браслеты, цепоки" description='Мы предлагаем твоары из серебра высочайшего качества и по доступной цене'/>
             <div className={styles.rings}>
                 <div className="container">
                     <div className="row ">
