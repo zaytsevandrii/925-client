@@ -20,7 +20,7 @@ const UserOrderScreen = () => {
         if (cart.cartItems.length===0) {
             router.push('/')
         }
-    }, [])
+    }, [cart.cartItems.length, router])
 
     const handleSubmit = (event) => {
         event.preventDefault()

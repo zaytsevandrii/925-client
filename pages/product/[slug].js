@@ -15,16 +15,12 @@ const ProductScreen = (props) => {
     const { state, dispatch } = useContext(Store)
     const [k,setK] = useState(1)
     const { status, data: session } = useSession()
-    if (!product) {
-        return <div>Товар не найден</div>
-    }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
                 setK(data.k)
-                /* setValue("k", data.k) */
             } catch (err) {
                 console.log(err)
             }
@@ -33,6 +29,10 @@ const ProductScreen = (props) => {
             fetchData()
         }
     }, [session,product])
+
+    if (!product) {
+        return <div>Товар не найден</div>
+    }
 
     const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)

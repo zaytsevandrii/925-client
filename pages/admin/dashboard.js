@@ -116,7 +116,7 @@ function AdminDashboardScreen() {
                                                     {summary.productsCount}
                                                 </Card.Title>
                                                 <Card.Text>Всего товаров</Card.Text>
-                                                <Link href="/admin/products">Посмотреть раздел</Link>
+                                                {/* <Link href="/admin/products">Посмотреть раздел</Link> */}
                                             </Card>
                                         </Col>
                                        {/*  <Col md={3}>
