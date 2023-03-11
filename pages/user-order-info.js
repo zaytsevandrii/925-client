@@ -76,7 +76,7 @@ const UserOrderScreen = () => {
                                 <Form.Label>Телефон</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Введите ваш город"
+                                    placeholder="Введите ваш номер"
                                     value={phone}
                                     onChange={(event) => setPhone(event.target.value)}
                                     required
