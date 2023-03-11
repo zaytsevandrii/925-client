@@ -15,7 +15,7 @@ function PlaceOrderScreen() {
     const { cartItems, shippingAddress } = cart
 
     const { data: session } = useSession()
-    
+    const router = useRouter();
     const [k,setK] = useState(1)
     useEffect(() => {
         if (cartItems.length===0) {
@@ -43,7 +43,7 @@ function PlaceOrderScreen() {
     const itemsPrice = round2(cartItems.reduce((a, c) => a + c.quantity * c.price*k, 0)) // 123.4567 => 123.46
 
 
-    const router = useRouter();
+    
     
     const [loading, setLoading] = useState(false);
   
