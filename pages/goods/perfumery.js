@@ -103,7 +103,7 @@ const PerfumeryScreen = ({ products }) => {
 export default PerfumeryScreen
 
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     await db.connect()
     const products = await Product.find({ category: "Парфюмерия" }).lean()
     return {

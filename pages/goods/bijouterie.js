@@ -116,7 +116,7 @@ export default Bijouterie
     }
 } */
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     await db.connect()
     const products = await Product.find({ category: "Бижутерия" }).lean()
     return {

@@ -102,7 +102,7 @@ const ChildrenScreen = ({ products }) => {
 
 export default ChildrenScreen
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     await db.connect()
     const products = await Product.find({ category: "Детские" }).lean()
     return {

@@ -103,7 +103,7 @@ const BagsScreen = ({ products }) => {
 
 export default BagsScreen
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     await db.connect()
     const products = await Product.find({ category: "Сумки" }).lean()
     return {
