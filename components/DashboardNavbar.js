@@ -35,7 +35,47 @@ export default function DashboardNavbar() {
                             </li>
                             <li className={`list-group-item ${isActive("/admin/products") ? "active" : ""}`}>
                                 <Link href="/admin/products" style={{ color: "inherit" }}>
-                                    Продукты
+                                    Серебро
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/bijouterie") ? "active" : ""}`}>
+                                <Link href="/admin/bijouterie" style={{ color: "inherit" }}>
+                                    Бижутерия
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/watch") ? "active" : ""}`}>
+                                <Link href="/admin/watch" style={{ color: "inherit" }}>
+                                    Часы
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/bags") ? "active" : ""}`}>
+                                <Link href="/admin/bags" style={{ color: "inherit" }}>
+                                    Сумки
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/children-jewelry") ? "active" : ""}`}>
+                                <Link href="/admin/children-jewelry" style={{ color: "inherit" }}>
+                                    Детские Украшения
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/scarves") ? "active" : ""}`}>
+                                <Link href="/admin/scarves" style={{ color: "inherit" }}>
+                                    Шарфы
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/perfumery") ? "active" : ""}`}>
+                                <Link href="/admin/perfumery" style={{ color: "inherit" }}>
+                                    Парфюмерия
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/natural-stones") ? "active" : ""}`}>
+                                <Link href="/admin/natural-stones" style={{ color: "inherit" }}>
+                                    Натуральные камни
+                                </Link>
+                            </li>
+                            <li className={`list-group-item ${isActive("/admin/new-product") ? "active" : ""}`}>
+                                <Link href="/admin/new-product" style={{ color: "inherit" }}>
+                                    Новинки
                                 </Link>
                             </li>
                         </ul>

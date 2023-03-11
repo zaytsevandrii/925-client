@@ -1,7 +1,7 @@
 import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import React, { useEffect, useReducer } from "react"
+import React, { useEffect, useReducer, useState } from "react"
 import { Container, Row, Col, Card, Table, Button, Form } from "react-bootstrap"
 import { useForm } from "react-hook-form"
 import { toast } from "react-toastify"
@@ -47,6 +47,7 @@ export default function AdminProductEditScreen() {
         loading: true,
         error: "",
     })
+    const[pagePath,setPagePath] = useState('products')
 
     const {
         register,
@@ -122,6 +123,20 @@ export default function AdminProductEditScreen() {
             toast.error(getError(err))
         }
     }
+    const categoryPaths = {
+        "Серебро": "products",
+        "Бижутерия": "bijouterie",
+        "Часы": "watch",
+        "Сумки": "bags",
+        "Детские": "kids",
+        "Шарфы": "scarfs",
+        "Парфюмерия": "perfumes",
+        "Камни": "stones",
+        "Новинки": "new",
+      }
+    const routerPush=(cat)=>{
+        setPagePath(categoryPaths[cat])
+    }
     return (
         <>
             <div className={styles.admin}>
@@ -195,10 +210,11 @@ export default function AdminProductEditScreen() {
                                     </Form.Group> */}
                                     <Form.Group className="mb-4" controlId="category">
                                         <Form.Label>Категория</Form.Label>
-                                        <Form.Select
+                                        <Form.Select 
                                             {...register("category", {
                                                 required: "Выберите категорию",
-                                            })}
+                                            })} 
+                                        onChange={e=>routerPush(e.target.value)}
                                         >
                                             <option value="Серебро">Серебро</option>
                                             <option value="Бижутерия">Бижутерия</option>
@@ -236,7 +252,7 @@ export default function AdminProductEditScreen() {
                                         {loadingUpdate ? "Загрузка" : "Обновить"}
                                     </Button>
                                     <div className="mb-4">
-                                        <Link href={`/admin/products`}>назад</Link>
+                                        <Link href={`/admin/${pagePath}`}>назад</Link>
                                     </div>
                                 </Form>
                             )}

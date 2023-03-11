@@ -35,9 +35,8 @@ function reducer(state, action) {
     }
 }
 
-export default function AdminProdcutsScreen() {
+export default function AdminSnonesScreen() {
     const router = useRouter()
-    const category = router.query.category
     const [{ loading, error, products, loadingCreate, successDelete, loadingDelete }, dispatch] = useReducer(reducer, {
         loading: true,
         products: [],
@@ -62,7 +61,7 @@ export default function AdminProdcutsScreen() {
         const fetchData = async () => {
             try {
                 dispatch({ type: "FETCH_REQUEST" })
-                const { data } = await axios.get(`/api/admin/products`)
+                const { data } = await axios.get(`/api/admin/natural-stones`)
                 dispatch({ type: "FETCH_SUCCESS", payload: data })
             } catch (err) {
                 dispatch({ type: "FETCH_FAIL", payload: getError(err) })
@@ -99,7 +98,7 @@ export default function AdminProdcutsScreen() {
                             <DashboardNavbar />
                             <Col md={9} className="mt-4">
                                 <div>
-                                    <h1 className="">Товары</h1>
+                                    <h1 className="">Бижутерия</h1>
                                     {loadingDelete && <div>Удаление товара..</div>}
                                     <Button
                                         className="mx-3 my-3"
@@ -159,4 +158,4 @@ export default function AdminProdcutsScreen() {
     )
 }
 
-AdminProdcutsScreen.auth = { adminOnly: true }
+AdminSnonesScreen.auth = { adminOnly: true }

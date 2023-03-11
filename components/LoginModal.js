@@ -22,7 +22,6 @@ const LoginModal = ({ show, handleClose, allClose }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        /* console.log(`Submitted: Name: ${name}, Email: ${email}, Password: ${password}`) */
         try {
             const result = await signIn("credentials", {
                 redirect: false,

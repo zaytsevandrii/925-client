@@ -70,7 +70,6 @@ function PlaceOrderScreen() {
         toast.error('Необходимо авторизоваться');
       }
     };
-    console.log(shippingAddress)
     return (
         <>
 

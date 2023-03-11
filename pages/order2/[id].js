@@ -48,7 +48,6 @@ function OrderScreen() {
         itemsPrice,
       
       } = order;
-      console.log(shippingAddress)
     return (
         <>
             <div className={styles.placeOrder}>
