@@ -238,3 +238,18 @@ a {
 .hr{
     border: 1px solid #bdbdbd;
 }
+
+.loadingPage{
+    font-family: "Roboto", sans-serif;
+    min-height: 60vh;
+
+    @media (max-width: 912px) {
+        min-height: 72vh;
+    }
+    @media (max-width: 768px) {
+        min-height: 68vh;
+    }
+    @media (max-width: 767px) {
+        min-height: auto;
+    }
+}

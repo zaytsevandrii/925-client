@@ -10,7 +10,7 @@ import Meta from "../../components/Meta"
 
 const pageSize = 40
 
-const Сollections = ({ products }) => {
+export default function Сollections({ products }) {
    
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
@@ -112,11 +112,10 @@ const Сollections = ({ products }) => {
     )
 }
 
-export default Сollections
 
-/* export async function getStaticProps() {
+/* export async function getServerSideProps() {
     await db.connect()
-    const products = await Product.find().lean()
+    const products = await Product.find({ category: "Серебро" }).lean()
     return {
         props: {
             products: products.map(db.convertDocToObj),
@@ -125,8 +124,13 @@ export default Сollections
 } */
 
 export async function getServerSideProps() {
-    await db.connect()
-    const products = await Product.find({ category: "Серебро" }).lean()
+    let products = []
+    try {
+        await db.connect()
+        products = await Product.find({ category: "Серебро" }).lean()
+    } catch (error) {
+        console.error("Error fetching products", error)
+    }
     return {
         props: {
             products: products.map(db.convertDocToObj),
