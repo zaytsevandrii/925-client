@@ -13,7 +13,7 @@ const ProductScreen = (props) => {
     const { product } = props
     const router = useRouter()
     const { state, dispatch } = useContext(Store)
-    const [k,setK] = useState(1)
+    const [k, setK] = useState(1)
     const { status, data: session } = useSession()
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const ProductScreen = (props) => {
         if (session?.user) {
             fetchData()
         }
-    }, [session,product])
+    }, [session, product])
 
     if (!product) {
         return <div>Товар не найден</div>
@@ -46,58 +46,61 @@ const ProductScreen = (props) => {
         /*  router.push('/basket') */
     }
 
-    
     return (
         <div className="container ">
             <div className={styles.product}>
-                <div className="row">
-                    <div className="col-md-5 mt-3 card2">
-                        <Image src={product.image} alt={product.name} width={500} height={500} className="w-100 h-auto" />
-                    </div>
-                    <div className="col-md-6 mt-3">
-                        <div className="row">
-                            <h2>{product.name}</h2>
+                {!props ? (
+                    <div>Загрузка...</div>
+                ) : (
+                    <div className="row">
+                        <div className="col-md-5 mt-3 card2">
+                            <Image src={product.image} alt={product.name} width={500} height={500} className="w-100 h-auto" />
                         </div>
-                        <div className="row">
-                            {status === "loading" ? (
-                                <p>Цена: {product.price} ₸</p>
-                            ) : k<1 ? (
-                                <p >Старая цена:  <span style={{ textDecoration: 'line-through'}}>
-                                {product.price} ₸
-                              </span></p>
-                            ) : (
-                                <p>Цена: {product.price} ₸</p>
-                            )}
-                        </div>
-                        {k<1&&(
+                        <div className="col-md-6 mt-3">
                             <div className="row">
-                            <p>Оптовая цена: {Math.round(product.price*k)} ₸</p>
-                        </div>
-                        )}
-                        <div className="row">
-                            <p>Категория: {product.category}</p>
-                        </div>
-                        <div className="row">
-                            <p>Статус: {product.countInStock > 0 ? "В наличии" : "недоступен"}</p>
-                        </div>
-                        <div className="row">
-                            <p>Описание: {product.description}</p>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-8 col-12">
-                                {product.countInStock > 0 ? (
-                                    <button type="button" className="btn btn-dark w-100" onClick={addToCartHandler}>
-                                        Добавить в корзину
-                                    </button>
+                                <h2>{product.name}</h2>
+                            </div>
+                            <div className="row">
+                                {status === "loading" ? (
+                                    <p>Цена: {product.price} ₸</p>
+                                ) : k < 1 ? (
+                                    <p>
+                                        Старая цена: <span style={{ textDecoration: "line-through" }}>{product.price} ₸</span>
+                                    </p>
                                 ) : (
-                                    <button type="button" className="btn btn-dark w-100" disabled>
-                                        Добавить в корзину
-                                    </button>
+                                    <p>Цена: {product.price} ₸</p>
                                 )}
+                            </div>
+                            {k < 1 && (
+                                <div className="row">
+                                    <p>Оптовая цена: {Math.round(product.price * k)} ₸</p>
+                                </div>
+                            )}
+                            <div className="row">
+                                <p>Категория: {product.category}</p>
+                            </div>
+                            <div className="row">
+                                <p>Статус: {product.countInStock > 0 ? "В наличии" : "недоступен"}</p>
+                            </div>
+                            <div className="row">
+                                <p>Описание: {product.description}</p>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-8 col-12">
+                                    {product.countInStock > 0 ? (
+                                        <button type="button" className="btn btn-dark w-100" onClick={addToCartHandler}>
+                                            Добавить в корзину
+                                        </button>
+                                    ) : (
+                                        <button type="button" className="btn btn-dark w-100" disabled>
+                                            Добавить в корзину
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     )

@@ -60,6 +60,11 @@ const Bijouterie = ({ products }) => {
                 description="Мы предлагаем твоары бижутерию высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
+            {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -98,7 +103,7 @@ const Bijouterie = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )

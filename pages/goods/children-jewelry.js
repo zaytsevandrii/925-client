@@ -57,6 +57,11 @@ const ChildrenScreen = ({ products }) => {
     return (
         <><Meta title="Детские украшения" description="Мы предлагаем самые красивые детские украшения по доступной цене оптом и в розницу, сделайте подарок своим детям" />
             <div className={styles.rings}>
+            {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -94,7 +99,7 @@ const ChildrenScreen = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )

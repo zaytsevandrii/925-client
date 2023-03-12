@@ -57,45 +57,51 @@ const BagsScreen = ({ products }) => {
         <>
             <Meta title="Сумки оптом и в розницу" description="Мы предлагаем сумки высочайшего качества и по доступной цене" />
             <div className={styles.rings}>
-                <div className="container">
-                    <div className="row ">
-                        <div className="col-lg-4 col-md-6 formAction mt-3 ">
-                            <select className="form-control " onChange={handleSortChange}>
-                                <option value="">Сортировать</option>
-                                <option value="priceAsc">Цена: по возрастанию</option>
-                                <option value="priceDesc">Цена: по убыванию</option>
-                                <option value="new">Новинки</option>
-                            </select>
+                {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
+                    <div className="container">
+                        <div className="row ">
+                            <div className="col-lg-4 col-md-6 formAction mt-3 ">
+                                <select className="form-control " onChange={handleSortChange}>
+                                    <option value="">Сортировать</option>
+                                    <option value="priceAsc">Цена: по возрастанию</option>
+                                    <option value="priceDesc">Цена: по убыванию</option>
+                                    <option value="new">Новинки</option>
+                                </select>
+                            </div>
+                            <div className="col-lg-12 col-12  mt-2">
+                                <div className="row">
+                                    {paginatedProducts.map((product) => (
+                                        <ProductItem product={product} key={product.slug} k={k} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-lg-12 col-12  mt-2">
-                            <div className="row">
-                                {paginatedProducts.map((product) => (
-                                    <ProductItem product={product} key={product.slug} k={k} />
-                                ))}
+
+                        <div className="row">
+                            <div className="col-12">
+                                <nav aria-label="Page navigation">
+                                    <ul className="pagination mt-2">
+                                        {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
+                                            <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
+                                                {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
+                                                <button
+                                                    className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
+                                                    onClick={() => handlePageChange(page)}
+                                                >
+                                                    {page}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
-
-                    <div className="row">
-                        <div className="col-12">
-                            <nav aria-label="Page navigation">
-                                <ul className="pagination mt-2">
-                                    {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-                                        <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
-                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
-                                            <button
-                                                className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
-                                                onClick={() => handlePageChange(page)}
-                                            >
-                                                {page}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+                )}
             </div>
         </>
     )

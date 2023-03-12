@@ -11,6 +11,7 @@ import Meta from "../../components/Meta"
 const pageSize = 40
 
 const Сollections = ({ products }) => {
+   
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
@@ -62,6 +63,11 @@ const Сollections = ({ products }) => {
                 description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
+            {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -100,7 +106,7 @@ const Сollections = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )

@@ -57,6 +57,11 @@ const WatchScreen = ({ products }) => {
         <>
            <Meta title="Шарфы" description="Мы предлагаем самые красивые шарфы по доступной цене оптом и в розницу, выберите для себя на любой вкус и цвет" />
             <div className={styles.rings}>
+            {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -95,7 +100,7 @@ const WatchScreen = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )

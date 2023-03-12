@@ -57,6 +57,11 @@ const PerfumeryScreen = ({ products }) => {
     return (
         <><Meta title="Парфюмерия" description="Мы предлагаем самую качественную и стойкую парфюмерию по доступной цене оптом и в розницу, сделайте подарок своим любимым." />
             <div className={styles.rings}>
+            {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -94,7 +99,7 @@ const PerfumeryScreen = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )

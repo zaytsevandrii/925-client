@@ -60,6 +60,11 @@ const StonesScreen = ({ products }) => {
                 description="Мы предлагаем самые качественные натуральные камни и украшения из них по доступной цене оптом и в розницу."
             />
             <div className={styles.rings}>
+            {!products ? (
+                    <div className="container">
+                        <div>Загрузка...</div>
+                    </div>
+                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -98,7 +103,7 @@ const StonesScreen = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )
