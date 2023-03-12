@@ -18,7 +18,7 @@ const Footer = () => {
 
                             <div className="sub-title mt-1" style={{ marginTop: "-14px", marginBottom: "4px" }}>
                                 <a href="tel:+380631517990" className="col-item" style={{ marginLeft: "10px", color: "#fff" }}>
-                                    <Image src="/phone.svg" alt="search" width={20} height={20} /> 8 7775 623 49 63
+                                    <Image src="/phone.svg" alt="search" width={20} height={20} /> 8 775 623 49 63
                                 </a>
                             </div>
                             <div className="sub-title mt-1" style={{ marginTop: "-14px", marginBottom: "4px" }}>
