@@ -61,7 +61,7 @@ const RegisterForm = () => {
         toast.success('Пользователь успешно создан')
         if (result.error) {
           toast.error(result.error);
-        }
+        } 
       } catch (err) {
         toast.error(getError(err));
       }
