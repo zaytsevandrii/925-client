@@ -146,7 +146,7 @@ export default function AdminperfumeryScreen() {
                                                     </tr>
                                                 ))}
                                             </tbody>
-                                        </Table>
+                                        </Table> 
                                     </div>
                                 )}
                             </Col>
