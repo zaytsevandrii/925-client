@@ -178,7 +178,7 @@ export default function Search(props) {
                                 </Col>
                             </Row>
 
-                            <Row className="mt-3">
+                            <Row className="mt-3"> 
                                 <Col >
                                     <Row className="g-4 g-md-3">
                                         {products.map((product) => (
