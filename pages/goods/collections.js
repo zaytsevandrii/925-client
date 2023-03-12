@@ -112,7 +112,6 @@ export default function Сollections({ products }) {
     )
 }
 
-
 /* export async function getServerSideProps() {
     await db.connect()
     const products = await Product.find({ category: "Серебро" }).lean()
@@ -124,13 +123,14 @@ export default function Сollections({ products }) {
 } */
 
 export async function getServerSideProps() {
-    let products = []
-    try {
-        await db.connect()
+    await db.connect()
+    let products = await Product.find({ category: "Серебро" }).lean()
+
+    // Если products пустой массив, повторите запрос еще раз
+    if (products.length === 0) {
         products = await Product.find({ category: "Серебро" }).lean()
-    } catch (error) {
-        console.error("Error fetching products", error)
     }
+
     return {
         props: {
             products: products.map(db.convertDocToObj),

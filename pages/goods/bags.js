@@ -111,7 +111,13 @@ export default BagsScreen
 
 export async function getServerSideProps() {
     await db.connect()
-    const products = await Product.find({ category: "Сумки" }).lean()
+    let products = await Product.find({ category: "Сумки" }).lean()
+
+    // Если products пустой массив, повторите запрос еще раз
+    if (products.length === 0) {
+        products = await Product.find({ category: "Сумки" }).lean()
+    }
+
     return {
         props: {
             products: products.map(db.convertDocToObj),
