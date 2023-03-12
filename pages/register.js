@@ -56,7 +56,7 @@ const RegisterForm = () => {
         const result = await signIn('credentials', {
           redirect: false,
           email:formData.email,
-          password:formData.password,
+          password:formData.password, 
         });
         toast.success('Пользователь успешно создан')
         if (result.error) {
