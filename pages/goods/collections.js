@@ -11,7 +11,7 @@ import Meta from "../../components/Meta"
 const pageSize = 40
 
 export default function Сollections({ products }) {
-   
+    const [isLoading, setIsLoading] = useState(true) // добавляем состояние для индикатора загрузки
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
@@ -35,7 +35,9 @@ export default function Сollections({ products }) {
             fetchData()
         }
     }, [session])
-
+    useEffect(() => {
+        setIsLoading(false) // устанавливаем isLoading в false, когда компонент загрузился
+    }, [])
     let sortedProducts = [...products]
 
     if (sortOption === "priceAsc") {
@@ -63,7 +65,7 @@ export default function Сollections({ products }) {
                 description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
-            {!products ? (
+            {!isLoading  ? (
                     <div className="container">
                         <div>Загрузка...</div>
                     </div>
@@ -120,6 +122,5 @@ export async function getServerSideProps() {
             products: products.map(db.convertDocToObj),
             
         },
-        revalidate:1,
     }
 }
