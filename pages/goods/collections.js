@@ -112,28 +112,14 @@ export default function Сollections({ products }) {
     )
 }
 
-/* export async function getServerSideProps() {
+export async function getServerSideProps() {
     await db.connect()
     const products = await Product.find({ category: "Серебро" }).lean()
     return {
         props: {
             products: products.map(db.convertDocToObj),
+            
         },
-    }
-} */
-
-export async function getServerSideProps() {
-    await db.connect()
-    let products = await Product.find({ category: "Серебро" }).lean()
-
-    // Если products пустой массив, повторите запрос еще раз
-    if (products.length === 0) {
-        products = await Product.find({ category: "Серебро" }).lean()
-    }
-
-    return {
-        props: {
-            products: products.map(db.convertDocToObj),
-        },
+        revalidate:1,
     }
 }

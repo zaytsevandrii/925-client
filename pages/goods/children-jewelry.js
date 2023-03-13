@@ -114,5 +114,6 @@ export async function getServerSideProps() {
         props: {
             products: products.map(db.convertDocToObj),
         },
+        revalidate:1,
     }
 }

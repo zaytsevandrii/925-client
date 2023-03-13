@@ -69,7 +69,6 @@ export default function ProfileScreen() {
   };
     return (
         <>
-            {" "}
             <Container>
                 <div className={styles.register}>
                     <h2 className="text-center mt-4">Изменение профиля</h2>
