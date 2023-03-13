@@ -11,7 +11,6 @@ import Meta from "../../components/Meta"
 const pageSize = 40
 
 export default function Сollections({ products }) {
-    const [isLoading, setIsLoading] = useState(true) // добавляем состояние для индикатора загрузки
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
@@ -56,9 +55,7 @@ export default function Сollections({ products }) {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
 
-    useEffect(() => {
-        setIsLoading(false) // устанавливаем isLoading в false, когда компонент загрузился
-    }, [])
+   
     return (
         <>
             <Meta
@@ -67,7 +64,7 @@ export default function Сollections({ products }) {
                 description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
-            {isLoading  ? (
+            {!products  ? (
                     <div className="container">
                         <div>Загрузка...</div>
                     </div>
