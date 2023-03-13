@@ -35,9 +35,7 @@ export default function Сollections({ products }) {
             fetchData()
         }
     }, [session])
-    useEffect(() => {
-        setIsLoading(false) // устанавливаем isLoading в false, когда компонент загрузился
-    }, [])
+    
     let sortedProducts = [...products]
 
     if (sortOption === "priceAsc") {
@@ -57,6 +55,10 @@ export default function Сollections({ products }) {
 
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
+
+    useEffect(() => {
+        setIsLoading(false) // устанавливаем isLoading в false, когда компонент загрузился
+    }, [])
     return (
         <>
             <Meta
@@ -65,7 +67,7 @@ export default function Сollections({ products }) {
                 description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
-            {!isLoading  ? (
+            {isLoading  ? (
                     <div className="container">
                         <div>Загрузка...</div>
                     </div>
