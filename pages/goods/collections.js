@@ -1,21 +1,50 @@
 import axios from "axios"
 import { useSession } from "next-auth/react"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useReducer, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
 import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
 import db from "../../utils/db"
 import { Container, Row, Col, Form, Button } from "react-bootstrap"
 import Meta from "../../components/Meta"
+import SkeletonCard from "../../components/Skeleton/SkeletonCard"
 
+function reducer(state, action) {
+    switch (action.type) {
+        case "FETCH_REQUEST":
+            return { ...state, loading: true, error: "" }
+        case "FETCH_SUCCESS":
+            return { ...state, loading: false, products: action.payload, error: "" }
+        case "FETCH_FAIL":
+            return { ...state, loading: false, error: action.payload }
+        default:
+            state
+    }
+}
 const pageSize = 40
 
-export default function Сollections({ products }) {
+export default function Сollections(/* { products } */) {
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
     const [sortOption, setSortOption] = useState(null)
-
+    const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+        loading: true,
+        products: [],
+        error: "",
+    })
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                dispatch({ type: "FETCH_REQUEST" })
+                const { data } = await axios.get(`/api/serebro`)
+                dispatch({ type: "FETCH_SUCCESS", payload: data })
+            } catch (err) {
+                dispatch({ type: "FETCH_FAIL", payload: getError(err) })
+            }
+        }
+        fetchOrders()
+    }, [])
     const handleSortChange = (e) => {
         setSortOption(e.target.value)
         setCurrentPage(1) // Пагинация
@@ -64,11 +93,7 @@ export default function Сollections({ products }) {
                 description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
-            {!products  ? (
-                    <div className="container">
-                        <div>Загрузка...</div>
-                    </div>
-                ) : (
+           
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -80,11 +105,30 @@ export default function Сollections({ products }) {
                             </select>
                         </div>
                         <div className="col-lg-12 col-12  mt-2">
+                        {loading ? (
+                                <div className="row">
+                                    
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                </div>
+                            ) : error ? (
+                                <div className="alert-error">{error}</div>
+                            ) : (
                             <div className="row">
                                 {paginatedProducts.map((product) => (
                                     <ProductItem product={product} key={product.slug} k={k} />
                                 ))}
-                            </div>
+                            </div>)}
                         </div>
                     </div>
 
@@ -107,7 +151,7 @@ export default function Сollections({ products }) {
                             </nav>
                         </div>
                     </div>
-                </div>)}
+                </div>
             </div>
         </>
     )
