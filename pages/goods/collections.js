@@ -23,7 +23,7 @@ function reducer(state, action) {
 }
 const pageSize = 40
 
-export default function Сollections(/* { products } */) {
+export default function Сollections() {
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
@@ -157,13 +157,3 @@ export default function Сollections(/* { products } */) {
     )
 }
 
-export async function getServerSideProps() {
-    await db.connect()
-    const products = await Product.find({ category: "Серебро" }).lean()
-    return {
-        props: {
-            products: products.map(db.convertDocToObj),
-            
-        },
-    }
-}
