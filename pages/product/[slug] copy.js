@@ -19,19 +19,6 @@ const ProductScreen = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`/api/goods/${router.query.slug}`);
-                console.log(data)
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
-        fetchData()
-    }, [router.query.slug])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
                 const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
                 setK(data.k)
             } catch (err) {
@@ -124,7 +111,7 @@ export default ProductScreen
 export async function getServerSideProps(context) {
     const { params } = context
     const { slug } = params
-    console.log(slug)
+
     await db.connect()
     const product = await Product.findOne({ slug }).lean()
     await db.disconnect()
