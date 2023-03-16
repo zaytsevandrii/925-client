@@ -21,7 +21,7 @@ function PlaceOrderScreen() {
         if (cartItems.length===0) {
             router.push('/')
         }
-    }, [cartItems.length, router])
+    }, [router])
     useEffect(() => {
         const fetchData = async () => {
             try {
