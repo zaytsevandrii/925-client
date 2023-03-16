@@ -61,7 +61,7 @@ export default function Сollections() {
             fetchData()
         }
     }, [session])
-    
+
     let sortedProducts = [...products]
 
     if (sortOption === "priceAsc") {
@@ -82,7 +82,6 @@ export default function Сollections() {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
 
-   
     return (
         <>
             <Meta
@@ -91,7 +90,6 @@ export default function Сollections() {
                 description="Мы предлагаем твоары из серебра высочайшего качества и по доступной цене"
             />
             <div className={styles.rings}>
-           
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -103,30 +101,21 @@ export default function Сollections() {
                             </select>
                         </div>
                         <div className="col-lg-12 col-12  mt-2">
-                        {loading ? (
+                            {loading ? (
                                 <div className="row">
-                                    
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
+                                    {[...new Array(12)].map((_, i) => (
+                                    <SkeletonCard key={i} />
+                                    ))}
                                 </div>
                             ) : error ? (
                                 <div className="alert-error">{error}</div>
                             ) : (
-                            <div className="row">
-                                {paginatedProducts.map((product) => (
-                                    <ProductItem product={product} key={product.slug} k={k} />
-                                ))}
-                            </div>)}
+                                <div className="row">
+                                    {paginatedProducts.map((product) => (
+                                        <ProductItem product={product} key={product.slug} k={k} />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -154,4 +143,3 @@ export default function Сollections() {
         </>
     )
 }
-

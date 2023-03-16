@@ -12,8 +12,8 @@ const MyLoader = (props) => (
     {...props}
   >
     <rect x="0" y="0" rx="12" ry="12" width="261" height="261" /> 
-    <rect x="3" y="282" rx="5" ry="5" width="254" height="13" /> 
-    <rect x="6" y="314" rx="6" ry="6" width="154" height="15" />
+    <rect x="3" y="277" rx="5" ry="5" width="254" height="13" /> 
+    <rect x="6" y="305" rx="6" ry="6" width="154" height="15" />
   </ContentLoader>
 )
 

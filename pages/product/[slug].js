@@ -1,28 +1,47 @@
 import { useRouter } from "next/router"
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useReducer, useState } from "react"
 import styles from "../../styles/ProductScreen.module.scss"
 import Image from "next/image"
 import { Store } from "../../utils/Store"
 import { useSession } from "next-auth/react"
-import Product from "../../models/Product"
-import db from "../../utils/db"
 import axios from "axios"
 import { toast } from "react-toastify"
+import { getError } from "../../utils/error"
+import MyLoader3 from "../../components/Skeleton/SkeletonProduct"
+import SkeletonText from "../../components/Skeleton/SkeletonText"
 
-const ProductScreen = (props) => {
-    const { product } = props
+function reducer(state, action) {
+    switch (action.type) {
+        case "FETCH_REQUEST":
+            return { ...state, loading: true, error: "" }
+        case "FETCH_SUCCESS":
+            return { ...state, loading: false, product: action.payload, error: "" }
+        case "FETCH_FAIL":
+            return { ...state, loading: false, error: action.payload }
+        default:
+            state
+    }
+}
+
+const ProductScreen = () => {
+    const [{ loading, error, product }, dispatch2] = useReducer(reducer, {
+        loading: true,
+        product: {},
+        error: "",
+    })
     const router = useRouter()
     const { state, dispatch } = useContext(Store)
     const [k, setK] = useState(1)
     const { status, data: session } = useSession()
-
+    console.log(product)
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get(`/api/goods/${router.query.slug}`);
-                console.log(data)
+                dispatch2({ type: "FETCH_REQUEST" })
+                const { data } = await axios.get(`/api/goods/${router.query.slug}`)
+                dispatch2({ type: "FETCH_SUCCESS", payload: data })
             } catch (err) {
-                console.log(err)
+                dispatch2({ type: "FETCH_FAIL", payload: getError(err) })
             }
         }
 
@@ -44,7 +63,7 @@ const ProductScreen = (props) => {
     }, [session, product])
 
     if (!product) {
-        return <div>Товар не найден</div>
+        return <div className={styles.product}>Товар не найден</div>
     }
 
     const addToCartHandler = async () => {
@@ -62,8 +81,35 @@ const ProductScreen = (props) => {
     return (
         <div className="container ">
             <div className={styles.product}>
-                {!props ? (
-                    <div>Загрузка...</div>
+                {loading ? (
+                    <div className="row">
+                        <div className="col-md-5 mt-3 card2">
+                           <MyLoader3 className="w-100 h-auto"/>
+                        </div>
+                        <div className="col-md-6 mt-3">
+                            <div className="row">
+                                <h2><SkeletonText className="w-100 h-auto"/></h2>
+                            </div>
+                            <div className="row">
+                                <p> <SkeletonText className="w-100 h-auto"/> </p>
+                            </div>
+                            <div className="row">
+                                <p><SkeletonText className="w-100 h-auto"/>  </p>
+                            </div>
+
+                            <div className="row">
+                                <p><SkeletonText className="w-100 h-auto"/> </p>
+                            </div>
+                            <div className="row">
+                                <p ><SkeletonText className="w-100 h-auto"/> </p>
+                            </div>
+                            <div className="row">
+                                <p><SkeletonText className="w-100 h-auto"/> </p>
+                            </div>
+                        </div>
+                    </div>
+                ) : error ? (
+                    <div className="alert-error">{error}</div>
                 ) : (
                     <div className="row">
                         <div className="col-md-5 mt-3 card2">
@@ -121,7 +167,7 @@ const ProductScreen = (props) => {
 
 export default ProductScreen
 
-export async function getServerSideProps(context) {
+/* export async function getServerSideProps(context) {
     const { params } = context
     const { slug } = params
     console.log(slug)
@@ -133,4 +179,4 @@ export async function getServerSideProps(context) {
             product: product ? db.convertDocToObj(product) : null,
         },
     }
-}
+} */

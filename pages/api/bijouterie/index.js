@@ -12,7 +12,7 @@ const handler2 = async (req, res) => {
 
 const getHandler = async (req, res) => { 
   await db.connect()
-  const products = await Product.find({ category: "Бижутерия" });
+  const products = await Product.find({ category: "Бижутерия" }).lean();
   await db.disconnect()
   res.send(products)
 }

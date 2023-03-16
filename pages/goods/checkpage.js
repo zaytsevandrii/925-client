@@ -2,11 +2,8 @@ import axios from "axios"
 import { useSession } from "next-auth/react"
 import React, { useEffect, useReducer, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
-import MyLoader from "../../components/Skeleton/Skeleton"
 import SkeletonCard from "../../components/Skeleton/SkeletonCard"
-import Product from "../../models/Product"
 import styles from "../../styles/Rings.module.scss"
-import db from "../../utils/db"
 import { getError } from "../../utils/error"
 
 function reducer(state, action) {
@@ -48,25 +45,15 @@ export default function CheckPage(/* { products } */) {
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-12 col-12  mt-2">
-                            {loading ? (
-                                <div className="row">
-                                    
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                        <SkeletonCard />
-                                </div>
-                            ) : error ? (
-                                <div className="alert-error">{error}</div>
-                            ) : (
+                        {loading ? (
+                                    <div className="row">
+                                        {[...new Array(12)].map((_, i) => (
+                                            <SkeletonCard key={i} />
+                                        ))}
+                                    </div>
+                                ) : error ? (
+                                    <div className="alert-error">{error}</div>
+                                ) : (
                                 <div className="row">
                                     {products.map((product) => (
                                         <ProductItem product={product} key={product.slug} k={k} />
@@ -84,12 +71,3 @@ export default function CheckPage(/* { products } */) {
     )
 }
 
-export async function getServerSideProps() {
-    await db.connect()
-    const products = await Product.find({}).lean()
-    return {
-        props: {
-            products: products.map(db.convertDocToObj),
-        },
-    }
-}

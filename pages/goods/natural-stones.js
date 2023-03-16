@@ -1,19 +1,48 @@
 import axios from "axios"
 import { useSession } from "next-auth/react"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useReducer, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
 import Meta from "../../components/Meta"
-import Product from "../../models/Product"
+import SkeletonCard from "../../components/Skeleton/SkeletonCard"
 import styles from "../../styles/Rings.module.scss"
-import db from "../../utils/db"
+import { getError } from "../../utils/error"
 
+function reducer(state, action) {
+    switch (action.type) {
+        case "FETCH_REQUEST":
+            return { ...state, loading: true, error: "" }
+        case "FETCH_SUCCESS":
+            return { ...state, loading: false, products: action.payload, error: "" }
+        case "FETCH_FAIL":
+            return { ...state, loading: false, error: action.payload }
+        default:
+            state
+    }
+}
 const pageSize = 40
 
-const StonesScreen = ({ products }) => {
+const StonesScreen = () => {
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
     const [sortOption, setSortOption] = useState(null)
+    const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+        loading: true,
+        products: [],
+        error: "",
+    })
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                dispatch({ type: "FETCH_REQUEST" })
+                const { data } = await axios.get(`/api/natural-stones`)
+                dispatch({ type: "FETCH_SUCCESS", payload: data })
+            } catch (err) {
+                dispatch({ type: "FETCH_FAIL", payload: getError(err) })
+            }
+        }
+        fetchOrders()
+    }, [])
 
     const handleSortChange = (e) => {
         setSortOption(e.target.value)
@@ -60,11 +89,6 @@ const StonesScreen = ({ products }) => {
                 description="Мы предлагаем самые качественные натуральные камни и украшения из них по доступной цене оптом и в розницу."
             />
             <div className={styles.rings}>
-            {!products ? (
-                    <div className="container">
-                        <div>Загрузка...</div>
-                    </div>
-                ) : (
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-4 col-md-6 formAction mt-3 ">
@@ -76,11 +100,20 @@ const StonesScreen = ({ products }) => {
                             </select>
                         </div>
                         <div className="col-lg-12 col-12  mt-2">
+                        {loading ? (
+                                    <div className="row">
+                                        {[...new Array(12)].map((_, i) => (
+                                            <SkeletonCard key={i} />
+                                        ))}
+                                    </div>
+                                ) : error ? (
+                                    <div className="alert-error">{error}</div>
+                                ) : (
                             <div className="row">
                                 {paginatedProducts.map((product) => (
                                     <ProductItem product={product} key={product.slug} k={k} />
                                 ))}
-                            </div>
+                            </div>)}
                         </div>
                     </div>
 
@@ -103,7 +136,7 @@ const StonesScreen = ({ products }) => {
                             </nav>
                         </div>
                     </div>
-                </div>)}
+                </div>
             </div>
         </>
     )
@@ -111,12 +144,4 @@ const StonesScreen = ({ products }) => {
 
 export default StonesScreen
 
-export async function getServerSideProps() {
-    await db.connect()
-    const products = await Product.find({ category: "Камни" }).lean()
-    return {
-        props: {
-            products: products.map(db.convertDocToObj),
-        },
-    }
-}
+

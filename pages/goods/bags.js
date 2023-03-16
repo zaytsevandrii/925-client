@@ -1,20 +1,48 @@
 import axios from "axios"
 import { useSession } from "next-auth/react"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useReducer, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
 import Meta from "../../components/Meta"
-import Product from "../../models/Product"
+import SkeletonCard from "../../components/Skeleton/SkeletonCard"
 import styles from "../../styles/Rings.module.scss"
-import db from "../../utils/db"
 
+function reducer(state, action) {
+    switch (action.type) {
+        case "FETCH_REQUEST":
+            return { ...state, loading: true, error: "" }
+        case "FETCH_SUCCESS":
+            return { ...state, loading: false, products: action.payload, error: "" }
+        case "FETCH_FAIL":
+            return { ...state, loading: false, error: action.payload }
+        default:
+            state
+    }
+}
 const pageSize = 40
 
-const BagsScreen = ({ products }) => {
+const BagsScreen = () => {
     const { status, data: session } = useSession()
     const [k, setK] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
     const [sortOption, setSortOption] = useState(null)
 
+    const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+        loading: true,
+        products: [],
+        error: "",
+    })
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                dispatch({ type: "FETCH_REQUEST" })
+                const { data } = await axios.get(`/api/bags`)
+                dispatch({ type: "FETCH_SUCCESS", payload: data })
+            } catch (err) {
+                dispatch({ type: "FETCH_FAIL", payload: getError(err) })
+            }
+        }
+        fetchOrders()
+    }, [])
     const handleSortChange = (e) => {
         setSortOption(e.target.value)
         setCurrentPage(1) // Пагинация
@@ -57,51 +85,55 @@ const BagsScreen = ({ products }) => {
         <>
             <Meta title="Сумки оптом и в розницу" description="Мы предлагаем сумки высочайшего качества и по доступной цене" />
             <div className={styles.rings}>
-                {!products ? (
-                    <div className="container">
-                        <div>Загрузка...</div>
-                    </div>
-                ) : (
-                    <div className="container">
-                        <div className="row ">
-                            <div className="col-lg-4 col-md-6 formAction mt-3 ">
-                                <select className="form-control " onChange={handleSortChange}>
-                                    <option value="">Сортировать</option>
-                                    <option value="priceAsc">Цена: по возрастанию</option>
-                                    <option value="priceDesc">Цена: по убыванию</option>
-                                    <option value="new">Новинки</option>
-                                </select>
-                            </div>
-                            <div className="col-lg-12 col-12  mt-2">
+                <div className="container">
+                    <div className="row ">
+                        <div className="col-lg-4 col-md-6 formAction mt-3 ">
+                            <select className="form-control " onChange={handleSortChange}>
+                                <option value="">Сортировать</option>
+                                <option value="priceAsc">Цена: по возрастанию</option>
+                                <option value="priceDesc">Цена: по убыванию</option>
+                                <option value="new">Новинки</option>
+                            </select>
+                        </div>
+                        <div className="col-lg-12 col-12  mt-2">
+                            {loading ? (
+                                <div className="row">
+                                    {[...new Array(12)].map((_, i) => (
+                                        <SkeletonCard key={i} />
+                                    ))}
+                                </div>
+                            ) : error ? (
+                                <div className="alert-error">{error}</div>
+                            ) : (
                                 <div className="row">
                                     {paginatedProducts.map((product) => (
                                         <ProductItem product={product} key={product.slug} k={k} />
                                     ))}
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-12">
-                                <nav aria-label="Page navigation">
-                                    <ul className="pagination mt-2">
-                                        {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
-                                            <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
-                                                {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
-                                                <button
-                                                    className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
-                                                    onClick={() => handlePageChange(page)}
-                                                >
-                                                    {page}
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </nav>
-                            </div>
+                            )}
                         </div>
                     </div>
-                )}
+
+                    <div className="row">
+                        <div className="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul className="pagination mt-2">
+                                    {Array.from({ length: pageCount }, (_, i) => i + 1).map((page) => (
+                                        <li key={page} className={`page-item${currentPage === page ? " active" : ""}`}>
+                                            {/* <button className="page-link bg-dark" onClick={() => handlePageChange(page)}> */}
+                                            <button
+                                                className={`page-link ${currentPage === page ? "bg-dark" : ""}`}
+                                                onClick={() => handlePageChange(page)}
+                                            >
+                                                {page}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )
@@ -109,7 +141,7 @@ const BagsScreen = ({ products }) => {
 
 export default BagsScreen
 
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
     await db.connect()
     let products = await Product.find({ category: "Сумки" }).lean()
 
@@ -123,4 +155,4 @@ export async function getServerSideProps() {
             products: products.map(db.convertDocToObj),
         },
     }
-}
+} */
