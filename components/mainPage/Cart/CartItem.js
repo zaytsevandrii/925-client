@@ -14,10 +14,12 @@ const CartItem = ({ item}) => {
     const {
         cart: { cartItems },
     } = state
+    
     const addToCartHandler = async (product, isAdd) => {
+        console.log(product)
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
         let quantity = existItem ? existItem.quantity : 0
-        const { data } = await axios.get(`/api/products/${product._id}`);
+        /* const { data } = await axios.get(`/api/products/${product._id}`); */
         if (isAdd) {
             quantity += 1
         } else {
@@ -26,7 +28,7 @@ const CartItem = ({ item}) => {
 
         if (quantity < 1) {
             dispatch({ type: "CART_REMOVE_ITEM", payload: product })
-        } else if (data.countInStock < quantity) {
+        } else if (product.countInStock < quantity) {
             return toast.error("Извините. Товара больше нет в наличии")
         } else {
             dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })

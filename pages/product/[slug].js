@@ -68,9 +68,9 @@ const ProductScreen = () => {
     const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
-        const { data } = await axios.get(`/api/products/${product._id}`)
+        /* const { data } = await axios.get(`/api/products/${product._id}`) */
 
-        if (data.countInStock < quantity) {
+        if (existItem.countInStock < quantity) {
             return toast.error("Извините. Товара нет в наличии")
         }
 
@@ -85,27 +85,27 @@ const ProductScreen = () => {
                 {loading ? (
                     <div className="row">
                         <div className="col-md-5 mt-3 card2">
-                           <MyLoader3 className="w-100 h-auto"/>
+                           <MyLoader3 className="w-100 h-auto" uniqueKey="my-random-value"/>
                         </div>
                         <div className="col-md-6 mt-3">
                             <div className="row">
-                                <h2><SkeletonText className="w-100 h-auto"/></h2>
+                                <h2><SkeletonText className="w-100 h-auto" uniqueKey="my-random-value"/></h2>
                             </div>
                             <div className="row">
-                                <p> <SkeletonText className="w-100 h-auto"/> </p>
+                                <p> <SkeletonText className="w-100 h-auto" uniqueKey="my-random-value"/> </p>
                             </div>
                             <div className="row">
-                                <p><SkeletonText className="w-100 h-auto"/>  </p>
+                                <p><SkeletonText className="w-100 h-auto" uniqueKey="my-random-value"/>  </p>
                             </div>
 
                             <div className="row">
-                                <p><SkeletonText className="w-100 h-auto"/> </p>
+                                <p><SkeletonText className="w-100 h-auto" uniqueKey="my-random-value"/> </p>
                             </div>
                             <div className="row">
-                                <p ><SkeletonText className="w-100 h-auto"/> </p>
+                                <p ><SkeletonText className="w-100 h-auto" uniqueKey="my-random-value"/> </p>
                             </div>
                             <div className="row">
-                                <p><SkeletonText className="w-100 h-auto"/> </p>
+                                <p><SkeletonText className="w-100 h-auto" uniqueKey="my-random-value"/> </p>
                             </div>
                         </div>
                     </div>
