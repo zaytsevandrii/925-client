@@ -16,31 +16,17 @@ function PlaceOrderScreen() {
 
     const { data: session } = useSession()
     const router = useRouter();
-    const [k,setK] = useState(1)
     useEffect(() => {
         if (cartItems.length===0) {
             router.push('/')
         }
     }, [router])
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`/api/admin/users2/${session.user._id}`)
-                setK(data.k)
-                /* setValue("k", data.k) */
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        if (session?.user) {
-            fetchData()
-        }
-    }, [session])
+   
 
 
     const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
 
-    const itemsPrice = round2(cartItems.reduce((a, c) => a + c.quantity * c.price*k, 0)) // 123.4567 => 123.46
+    const itemsPrice = round2(cartItems.reduce((a, c) => a + c.quantity * c.price, 0)) // 123.4567 => 123.46
 
 
     

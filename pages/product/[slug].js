@@ -73,7 +73,9 @@ const ProductScreen = () => {
         if (data.countInStock < quantity) {
             return toast.error("Извините. Товара нет в наличии")
         }
-        dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } })
+
+        const price = k < 1 ? Math.round(product.price * k) : product.price; // Добавление k в store
+        dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity, price } })
         /*  router.push('/basket') */
     }
 

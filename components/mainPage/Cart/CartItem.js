@@ -6,7 +6,7 @@ import styles from "../../../styles/Cart.module.scss"
 import { Store } from "../../../utils/Store"
 import { toast } from 'react-toastify';
 
-const CartItem = ({ item,k }) => {
+const CartItem = ({ item}) => {
     const { state, dispatch } = useContext(Store)
     const removeItemHandler = (item) => {
         dispatch({ type: "CART_REMOVE_ITEM", payload: item })
@@ -47,7 +47,7 @@ const CartItem = ({ item,k }) => {
                 </div>
 
                 <div className="row">
-                      <p className="my-0">Цена: {Math.round(item.price*k)} ₸</p>
+                      <p className="my-0">Цена: {Math.round(item.price)} ₸</p>
                 </div>
                 <div className="row">
                     <div className="my-1 d-flex">
