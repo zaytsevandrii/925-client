@@ -96,7 +96,7 @@ function CartScreen()  {
                                            <h5 className="card-title">Сумма покупки: {Math.round(cartItems.reduce((a,c)=>a+c.quantity*c.price,0))} ₸</h5>
                                           
                                         <p className="card-text">
-                                            Нужна помощь с заказом? <br /> 8 800 500 500
+                                            Нужна помощь с заказом? <br /> 8 775 623 49 63
                                         </p>
                                         <button onClick={()=>router.push('/user-order-info')} className="btn btn-dark">
                                             ОФОРМИТЬ ЗАКАЗ
