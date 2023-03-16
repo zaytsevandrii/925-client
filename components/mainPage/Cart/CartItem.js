@@ -16,7 +16,6 @@ const CartItem = ({ item}) => {
     } = state
     
     const addToCartHandler = async (product, isAdd) => {
-        console.log(product)
         const existItem = state.cart.cartItems.find((item) => item.slug === product.slug)
         let quantity = existItem ? existItem.quantity : 0
         /* const { data } = await axios.get(`/api/products/${product._id}`); */
