@@ -33,7 +33,6 @@ const ProductScreen = () => {
     const { state, dispatch } = useContext(Store)
     const [k, setK] = useState(1)
     const { status, data: session } = useSession()
-    console.log(product)
     useEffect(() => {
         const fetchData = async () => {
             try {
