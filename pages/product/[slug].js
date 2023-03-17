@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 import { getError } from "../../utils/error"
 import MyLoader3 from "../../components/Skeleton/SkeletonProduct"
 import SkeletonText from "../../components/Skeleton/SkeletonText"
+import Meta from "../../components/Meta"
 
 function reducer(state, action) {
     switch (action.type) {
@@ -80,6 +81,7 @@ const ProductScreen = () => {
     }
 
     return (
+       <><Meta title={product.name} description={product.description}/>
         <div className="container ">
             <div className={styles.product}>
                 {loading ? (
@@ -163,6 +165,7 @@ const ProductScreen = () => {
                 )}
             </div>
         </div>
+       </>
     )
 }
 

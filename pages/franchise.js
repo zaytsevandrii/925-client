@@ -2,10 +2,12 @@ import Image from "next/image"
 import React from "react"
 import styles from "../styles/Cart.module.scss"
 import img10 from '../public/car/img14.jpg'
+import Meta from "../components/Meta"
 
 const FranchiseScreen = () => {
     return (
         <>
+        <Meta title='Преимущества работы с нами' description='Вы являетесь предпринимателем и хотите начать свой собственный бизнес в сфере ювелирных изделий и модных аксессуаров?'/>
             <div className={styles.orderHistory} style={{ textAlign: "justify" }}>
                 <div className="container">
                     <div className="row mt-3 d-fles text-center">

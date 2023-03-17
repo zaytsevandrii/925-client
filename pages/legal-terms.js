@@ -1,9 +1,10 @@
 import React from "react"
+import Meta from "../components/Meta"
 import styles from "../styles/Cart.module.scss"
 
 const AboutScreen = () => {
     return (
-        <>
+        <><Meta title='Пользовательское соглашение' description=' Весь контент, размещенный на нашем сайте, включая текст, фотографии, видео и дизайн, является нашей собственностью'/>
             <div className={styles.orderHistory} style={{ textAlign: "justify" }}>
                 <div className="container">
                     <div className="row ">

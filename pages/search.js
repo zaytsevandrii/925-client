@@ -8,6 +8,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap"
 import Image from "next/image"
 import styles from "../styles/Seatch.module.scss"
 import { useSession } from "next-auth/react"
+import Meta from "../components/Meta"
 
 const PAGE_SIZE = 10
 
@@ -104,7 +105,7 @@ export default function Search() {
         }
     }, [session])
     return (
-        <>
+        <><Meta title='Результаты поиска'/>
             <div className={styles.search}>
               
                   <Container>{isLoading?<div className="mt-3">Загрузка..</div>:(

@@ -8,6 +8,7 @@ import { toast } from "react-toastify"
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
 import { useSession } from "next-auth/react"
+import Meta from "../components/Meta"
 
 function PlaceOrderScreen() {
     const { state, dispatch } = useContext(Store)
@@ -58,7 +59,7 @@ function PlaceOrderScreen() {
     };
     return (
         <>
-
+<Meta title='Разместить заказ'/>
             <div className={styles.placeOrder}>
                {/*  {cartItems.length === 0 ? (
                     <div>

@@ -4,6 +4,7 @@ import { Container, Table } from "react-bootstrap"
 import Link from "next/link"
 import styles from "../styles/Cart.module.scss"
 import axios from "axios"
+import Meta from "../components/Meta"
 
 function reducer(state, action) {
     switch (action.type) {
@@ -38,7 +39,7 @@ function OrderHistoryScreen() {
         fetchOrders()
     }, [])
     return (
-        <>
+        <><Meta title='История заказов'/>
             <div className={styles.orderHistory}>
                 <div className="container mt-4">
                     <div className="row">

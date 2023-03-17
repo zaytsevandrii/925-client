@@ -3,6 +3,7 @@ import { signIn, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react"
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { toast } from "react-toastify";
+import Meta from "../components/Meta";
 import styles from '../styles/Register.module.scss'
 import { getError } from "../utils/error";
 
@@ -68,7 +69,7 @@ export default function ProfileScreen() {
     }
   };
     return (
-        <>
+        <><Meta title='Изменение профиля'/>
             <Container>
                 <div className={styles.register}>
                     <h2 className="text-center mt-4">Изменение профиля</h2>

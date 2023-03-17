@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import Meta from '../components/Meta';
 import styles from '../styles/Register.module.scss'
 import { getError } from '../utils/error';
 
@@ -68,6 +69,7 @@ const RegisterForm = () => {
     };
   
     return (
+      <><Meta title='Регистрация'/>
       <Container>
       <div className={styles.register}>
       <h2 className="text-center mt-4">Регистрация</h2>
@@ -138,6 +140,7 @@ const RegisterForm = () => {
         </Row>
       </div>
       </Container>
+      </>
     );
   };
   

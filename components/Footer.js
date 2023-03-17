@@ -8,10 +8,10 @@ import styles from "../styles/Footer.module.scss"
 const Footer = () => {
     return (
         <div className={styles.footer}>
-            <footer className="page-footer font-small blue pt-4 mt-3 main__footer">
+            <footer className="page-footer font-small blue pt-3 mt-1 main__footer">
                 <div className="container text-center text-md-left main__footer">
                     <div className="row">
-                        <div className="col-md-4 mt-md-0 ">
+                        <div className="col-md-4 mt-md-0" style={{marginBottom:'10px'}}>
                             <h5 className="text-uppercase">
                                 <Image alt="Dimax media logo" src={dimax} width={120} height={60} />
                             </h5>

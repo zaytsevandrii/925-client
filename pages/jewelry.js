@@ -1,9 +1,10 @@
 import React from "react"
+import Meta from "../components/Meta"
 import styles from "../styles/Cart.module.scss"
 
 const JewelryScreen = () => {
     return (
-        <>
+        <><Meta title='Ювелирные украшения' description='У нас Вы найдете самые прекрасные и стильные серебряные украшения, созданные опытными мастерами-ювелирами.'/>
             <div className={styles.orderHistory} style={{ textAlign: "justify" }}>
                 <div className="container">
                     <div className="row ">

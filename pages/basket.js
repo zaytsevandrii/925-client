@@ -7,8 +7,8 @@ import CartItem from "../components/mainPage/Cart/CartItem"
 import { Store } from "../utils/Store"
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
-import { useSession } from "next-auth/react"
-import axios from "axios"
+import Meta from "../components/Meta"
+
 
 function CartScreen()  {
     const router = useRouter()
@@ -35,7 +35,8 @@ function CartScreen()  {
     }, [session]) */
 
     return (
-        <>
+        <>  
+        <Meta title='Корзина' description='Корзина с товарами, где вы можете добавить товары, удалить и оформить заказ'/>
             <div className={styles.cart}>
                 {cartItems.length === 0 ? (
                     <div className="container">

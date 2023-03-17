@@ -1,10 +1,19 @@
 import React from "react"
+import Meta from "../components/Meta"
 import styles from "../styles/Cart.module.scss"
 
 const DeliveryScreen = () => {
     return (
         <>
-            <div className={styles.orderHistory} style={{textAlign:'justify'}}>
+            <Meta
+                title="Доставка и оплата"
+                description="При выборе варианта доставки курьером, вы дожидаетесь приезда курьера и передаёте ему сумму за
+        товар в тенге, либо оплачивате картой через мобильный POS-терминал или Kaspi QR. Курьер
+        предоставляет товар, который можно осмотреть на предмет повреждений, соответствие указанным
+        условиям. Покупатель подписывает товаросопроводительные документы, вносит денежные средства и
+        получает чек."
+            />
+            <div className={styles.orderHistory} style={{ textAlign: "justify" }}>
                 <div className="container">
                     <div className="row ">
                         <div className="col-lg-12 col-12  mt-3">
@@ -30,7 +39,10 @@ const DeliveryScreen = () => {
                                 <li>Платежной картой;</li>
                                 <li>Kaspi QR или RED</li>
                             </p>
-                            <p>За более подробной информацией вы можете связаться с нашим менеджером по выше указанным номерам телефонов</p>
+                            <p>
+                                За более подробной информацией вы можете связаться с нашим менеджером по выше указанным номерам
+                                телефонов
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,10 @@
 import React from "react"
+import Meta from "../components/Meta"
 import styles from "../styles/Cart.module.scss"
 
 const WatchScreen = () => {
     return (
-        <>
+        <><Meta title='Часы на заказ' description=' У нас вы можете заказать оригинальные или качественные реплики часов, которые можно заказать по своему вкусу. Наши часы изготавливаются только из высококачественных материалов и обеспечивают высокую точность хода. '/>
             <div className={styles.orderHistory} style={{textAlign:'justify'}}>
                 <div className="container">
                     <div className="row ">

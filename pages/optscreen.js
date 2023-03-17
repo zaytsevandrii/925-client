@@ -1,9 +1,10 @@
 import React from "react"
+import Meta from "../components/Meta"
 import styles from "../styles/Cart.module.scss"
 
 const OptScreen = () => {
     return (
-        <>
+        <><Meta title='Оптовые закупки ' description='Мы поставляем более 3000 разных видов модных и востребованных ювелирных украшений из серебра. Специально для оптовых партнеров мы разработали выгодную систему закупок, которая позволит вам зарабатывать 50% - 70% от рекомендованной цены на полке. Мы гарантируем Вам надёжное партнёрство и высокое качество изделий.'/>
             <div className={styles.orderHistory} style={{ textAlign: "justify" }}>
                 <div className="container">
                     <div className="row ">

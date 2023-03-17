@@ -1,9 +1,14 @@
 import React from "react"
+import Meta from "../components/Meta"
 import styles from "../styles/Cart.module.scss"
 
 const QualityScreen = () => {
     return (
         <>
+            <Meta
+                title="Гарантия качества"
+                description="В магазине нашей электронной коммерции мы всегда стремимся предоставлять только лучшие товары нашим клиентам. Мы гарантируем, что все изделия, которые вы найдете в нашем ассортименте, проходят строгий контроль качества"
+            />
             <div className={styles.orderHistory} style={{ textAlign: "justify" }}>
                 <div className="container">
                     <div className="row ">
