@@ -2,6 +2,7 @@ import axios from "axios"
 import { useSession } from "next-auth/react"
 import React, { useEffect, useReducer, useState } from "react"
 import ProductItem from "../../components/goods/ProductItem"
+import Meta from "../../components/Meta"
 import SkeletonCard from "../../components/Skeleton/SkeletonCard"
 import styles from "../../styles/Rings.module.scss"
 import { getError } from "../../utils/error"
@@ -83,7 +84,7 @@ const ScarvesScreen = () => {
     const startIndex = (currentPage - 1) * pageSize
     const paginatedProducts = sortedProducts.slice(startIndex, startIndex + pageSize)
     return (
-        <>
+        <><Meta title='Шарфы оптом и в розницу' description='В этом разделе вы найдете самые лучшие и качественные шарфы на любой вкус и цвет по разной цене, в зависимости от вашего заказа и уровня скидки'/>
             <div className={styles.rings}>
                 <div className="container">
                     <div className="row ">
