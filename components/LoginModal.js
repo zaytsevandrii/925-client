@@ -30,6 +30,7 @@ const LoginModal = ({ show, handleClose, allClose }) => {
             })
 
             handleClose()
+            router.reload()
             if (result.error) {
                 toast.error(result.error)
             }else{
