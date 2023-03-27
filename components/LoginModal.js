@@ -29,19 +29,22 @@ const LoginModal = ({ show, handleClose, allClose }) => {
                 password,
             })
 
-            handleClose()
-            router.reload()
+           /*  handleClose() */
+            
             if (result.error) {
                 toast.error(result.error)
             }else{
                 toast.success("Вы успешно вошли")
+                setTimeout(() => {
+                    router.reload(); // перезагрузка страницы через 500мс после успешного входа
+                  }, 800);
             }
             
         } catch (err) {
             toast.error(getError(err))
         }
 
-        /* handleClose() */
+        allClose()
     }
 
     return (
@@ -51,19 +54,6 @@ const LoginModal = ({ show, handleClose, allClose }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                   {/*  <Form.Group controlId="formBasicName">
-                        <Form.Label>Имя</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Введите имя"
-                            value={name}
-                            onInvalid={(e) => e.target.setCustomValidity("Пожалуйста, введите имя")}
-                            onChange={(e) => {
-                                e.target.setCustomValidity("")
-                                setName(e.target.value)
-                            }}
-                        />
-                    </Form.Group> */}
 
                     <Form.Group controlId="formBasicEmail" className="mt-3">
                         <Form.Label>Email </Form.Label>
@@ -96,7 +86,7 @@ const LoginModal = ({ show, handleClose, allClose }) => {
                         />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit" className="mt-3 w-100" onClick={allClose}>
+                    <Button variant="dark" type="submit" className="mt-3 w-100" /* onClick={allClose} */>
                         Логин
                     </Button>
                 </Form>
