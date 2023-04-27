@@ -26,7 +26,7 @@ const ProductItem = ({ product,k }) => {
                             <p className="card-text">{product.price} ₸</p>
                         )}
                         
-                        {/*  <button type="button" className="btn btn-dark px-2">
+                       {/*   <button type="button" className="btn btn-dark px-2">
                             Добавить
                         </button> */}
                     </div>
