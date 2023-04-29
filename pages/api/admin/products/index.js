@@ -33,7 +33,7 @@ const postHandler = async (req, res) => {
     price: 0,
     salePrice:0,
     category: 'Серебро',
-    countInStock: 0,
+    countInStock: 1,
     description: 'описание',
   });
 
