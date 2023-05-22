@@ -276,9 +276,9 @@ const Navbar = () => {
                         <Link href="/goods/new-product">
                             <li>Новинки</li>
                         </Link>
-                        <Link href="/goods/checkpage">
+                        {/* <Link href="/goods/checkpage">
                             <li>Check</li>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
                 <LoginModal show={showLoginModal} handleClose={handleLoginClose} allClose={allClose} />
